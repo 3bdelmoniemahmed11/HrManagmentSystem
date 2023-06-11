@@ -26,8 +26,8 @@ namespace HrMangment.DAL.Models
         public int DeptId { get; set; } 
         public Department Department { get; set; }
 
-        List<Attendance> Attendances { get; set; }= new List<Attendance>();
-        List<EmployeeContractDate> ContractsDates { get; set; } = new List<EmployeeContractDate>();
-        List<OldSalary> OldSalarys { get; set;} = new List<OldSalary>();    
+       public  virtual List<Attendance> Attendances { get; set; }= new List<Attendance>();
+       public virtual List<EmployeeContractDate> ContractsDates { get; set; } = new List<EmployeeContractDate>();
+       public virtual List<OldSalary>   OldSalarys { get; set;} = new List<OldSalary>();    
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HrMangment.DAL.Models
 {
-    internal class Department
+    internal class Vacation
     {
         public int Id { get; set; } 
         public string Name { get; set; }    
-        public bool IsDeleted { get; set; } 
-       public virtual List<Employee> Employees { get; set; }=new List<Employee>();
+        public DateOnly Date { get; set; }  
+        public string Type { get; set; }
+        //q1: we should add Isdeleted or not ?
     }
 }
