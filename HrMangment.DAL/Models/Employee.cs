@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HrMangment.DAL.CustomValidation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,18 +11,29 @@ namespace HrMangment.DAL.Models
 {
     internal class Employee
     {
-        public int Id { get; set; } 
+
+
+        public int Id { get; set; }
+        [MaxLength]
         public string Name { get; set; }
+        [RegularExpression("^[0-9]+{14,14}$", ErrorMessage = "Please enter a valid SSN")]
+        [MinLength(14)]
         public string SSN { get; set; }
         public string Address { get; set; }
+
+        [RegularExpression("^[0-9]{11,}$", ErrorMessage = "Please enter a valid Phone number.")]
+        [MinLength(11)]
         public string Phone { get; set; }   
         public string Gender { get; set; }
-        public DateOnly BirthDate { get; set; } 
-        public string Nationality { get; set; } 
+        //check the age is greater than 20 by two ways 1:custom validation  
+        [Age(20)]
+        public DateTime BirthDate { get; set; } 
+        public string Nationality { get; set; }
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please enter a valid Salary")]
         public int NetSalary { get; set; }  
         public TimeSpan AttendanceTime { get; set; }    
         public TimeSpan DepartureTime { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool ?IsDeleted { get; set; }
 
         [ForeignKey("Department")]
         public int DeptId { get; set; } 

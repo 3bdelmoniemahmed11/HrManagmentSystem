@@ -19,7 +19,7 @@ namespace HrMangment.DAL.Models
         public TimeSpan LateHours { get; set; }
         public float BounsHoursValue { get; set; }
         public float LateHoursValue { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  
         public Employee Employee { get; set; }  

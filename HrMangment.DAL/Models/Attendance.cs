@@ -12,7 +12,7 @@ namespace HrMangment.DAL.Models
         public int Id { get; set; } 
         public TimeSpan AttendanceTime { get; set; }
         public TimeSpan DepartureTime { get; set; }
-        public DateOnly Date { get; set; }  
+        public DateTime Date { get; set; }  
         public bool IsDeleted { get; set; }
         [ForeignKey("EmpId")]
         public int EmpId { get; set; }  

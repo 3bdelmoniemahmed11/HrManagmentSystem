@@ -1,0 +1,5 @@
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrMangment.DAL.csproj.AssemblyReference.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrMangment.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrMangment.DAL.AssemblyInfoInputs.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrMangment.DAL.AssemblyInfo.cs
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrMangment.DAL.csproj.CoreCompileInputs.cache

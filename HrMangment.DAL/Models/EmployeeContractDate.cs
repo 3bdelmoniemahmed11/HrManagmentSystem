@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HrMangment.DAL.CustomValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace HrMangment.DAL.Models
 {
     internal class EmployeeContractDate
     {
-        public int Id { get; set; } 
-        public DateOnly HireDate { get; set; }
-        public DateOnly FireDate { get; set; }
+        public int Id { get; set; }
+
+        [HireDate("1/1/2008")]
+
+        public DateTime HireDate { get; set; }
+        public DateTime FireDate { get; set; }
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  
         public Employee Employee { get; set; }
