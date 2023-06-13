@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.CustomValidation
+namespace HrManagment.DAL.CustomValidation
 {
     internal class HireDateAttribute : ValidationAttribute
     {

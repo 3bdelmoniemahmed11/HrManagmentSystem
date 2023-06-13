@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.Models
+namespace HrManagment.DAL.Models
 {
-    internal class OldSalary
+    public class OldSalary
     {
         public int Id { get; set; } 
         public float NetSalary { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.Models
+namespace HrManagment.DAL.Models
 {
-    internal class GeneralSetting
+    public class GeneralSetting
     {
         public int Id { get; set; } 
         public DateTime StartDate { get; set; } 

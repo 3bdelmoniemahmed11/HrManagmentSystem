@@ -1,4 +1,4 @@
-﻿using HrMangment.DAL.Models;
+﻿using HrManagment.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.DBContext
+namespace HrManagment.DAL.DBContext
 {
-    internal class HrManagmentContext: DbContext
+    public class HrManagmentContext: DbContext
     {
         public HrManagmentContext(DbContextOptions<HrManagmentContext> options) : base(options) { }
 

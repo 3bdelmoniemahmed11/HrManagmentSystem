@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.Models
+namespace HrManagment.DAL.Models
 {
-    internal class Department
+    public class Department
     {
         public int Id { get; set; } 
         public string Name { get; set; }    

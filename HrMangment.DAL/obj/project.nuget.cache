@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t4gA0UtQShVmLeaoWwZj08b8uB2ZkFMrOncd4GgQMUhyJQcgcV7KhmLDgqM5xFD9N4V1VgR5oMWLyEYp3G+SaA==",
+  "dgSpecHash": "9AMi/mfL/4JmsnQNyPMVQPI/oE4oR3xUtolLX9EeQURk5APk63sJITHRgVS6oHiU/l/Z32yvKGFwBDO8pcd1uw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrMangment.DAL.csproj",
+  "projectFilePath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abdel\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\abdel\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

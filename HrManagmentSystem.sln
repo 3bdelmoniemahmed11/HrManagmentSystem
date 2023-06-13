@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HrMangmentSystem", "HrMangmentSystem\HrMangmentSystem.csproj", "{7EA6ECCA-0881-4378-921D-B567A3FB8297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HrManagmentSystem", "HrMangmentSystem\HrManagmentSystem.csproj", "{7EA6ECCA-0881-4378-921D-B567A3FB8297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrMangment.DAL", "HrMangment.DAL\HrMangment.DAL.csproj", "{1FC68014-19AD-47EA-A7B7-876C848AE04E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HrManagment.DAL", "HrMangment.DAL\HrManagment.DAL.csproj", "{1FC68014-19AD-47EA-A7B7-876C848AE04E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

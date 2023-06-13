@@ -1,0 +1,14 @@
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.deps.json
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.runtimeconfig.json
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.dll
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.pdb
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.csproj.AssemblyReference.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.AssemblyInfoInputs.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.AssemblyInfo.cs
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.csproj.CoreCompileInputs.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.dll
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\refint\HrManagment.DAL.dll
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.pdb
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.genruntimeconfig.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\ref\HrManagment.DAL.dll

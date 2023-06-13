@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.Models
+namespace HrManagment.DAL.Models
 {
-    internal class Attendance
+    public class Attendance
     {
         public int Id { get; set; } 
         public TimeSpan AttendanceTime { get; set; }

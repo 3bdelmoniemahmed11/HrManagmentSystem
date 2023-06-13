@@ -1,4 +1,4 @@
-namespace HrMangmentSystem
+namespace HrManagmentSystem
 {
     public class WeatherForecast
     {

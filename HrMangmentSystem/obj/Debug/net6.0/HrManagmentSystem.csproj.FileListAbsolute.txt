@@ -1,0 +1,7 @@
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.csproj.AssemblyReference.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.AssemblyInfoInputs.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.AssemblyInfo.cs
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.csproj.CoreCompileInputs.cache
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\abdel\Desktop\HrMangmentSystem\HrMangmentSystem\obj\Debug\net6.0\HrManagmentSystem.MvcApplicationPartsAssemblyInfo.cache

@@ -3514,9 +3514,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrMangment.DAL.csproj",
-      "projectName": "HrMangment.DAL",
-      "projectPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrMangment.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
+      "projectName": "HrManagment.DAL",
+      "projectPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
       "packagesPath": "C:\\Users\\abdel\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\obj\\",
       "projectStyle": "PackageReference",

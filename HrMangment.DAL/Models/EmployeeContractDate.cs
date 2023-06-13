@@ -1,4 +1,4 @@
-﻿using HrMangment.DAL.CustomValidation;
+﻿using HrManagment.DAL.CustomValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrMangment.DAL.Models
+namespace HrManagment.DAL.Models
 {
-    internal class EmployeeContractDate
+    public class EmployeeContractDate
     {
         public int Id { get; set; }
 
