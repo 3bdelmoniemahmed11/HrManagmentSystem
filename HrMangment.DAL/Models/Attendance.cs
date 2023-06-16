@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HrManagment.DAL.CustomValidation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,9 +13,10 @@ namespace HrManagment.DAL.Models
     {
         public int Id { get; set; } 
         public TimeSpan AttendanceTime { get; set; }
-        public TimeSpan DepartureTime { get; set; }
+        [TimeSpanComparison("AttendanceTime")]
+        public TimeSpan ?DepartureTime { get; set; }
         public DateTime Date { get; set; }  
-        public bool IsDeleted { get; set; }
+        public bool ?IsDeleted { get; set; }
         [ForeignKey("EmpId")]
         public int EmpId { get; set; }  
         public Employee Employee { get; set; }

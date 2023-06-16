@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HrManagment.DAL.CustomValidation
 {
-    internal class AgeAttribute : ValidationAttribute
+    public class AgeAttribute : ValidationAttribute
     {
         private readonly int minimumAge;
         public AgeAttribute(int _minmumAge)

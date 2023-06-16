@@ -30,8 +30,10 @@ namespace HrManagment.DAL.Models
         public DateTime BirthDate { get; set; } 
         public string Nationality { get; set; }
         [RegularExpression("^[0-9]+$", ErrorMessage = "Please enter a valid Salary")]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be a positive number.")]
         public int NetSalary { get; set; }  
-        public TimeSpan AttendanceTime { get; set; }    
+        public TimeSpan AttendanceTime { get; set; }
+        [TimeSpanComparison("AttendanceTime")]
         public TimeSpan DepartureTime { get; set; }
         public bool ?IsDeleted { get; set; }
 

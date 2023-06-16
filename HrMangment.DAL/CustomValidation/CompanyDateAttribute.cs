@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HrManagment.DAL.CustomValidation
 {
-    internal class HireDateAttribute : ValidationAttribute
+    public class CompanyDateAttribute : ValidationAttribute
     {
         private readonly DateTime companyStartDate;
-        public HireDateAttribute(string  _companyStartDate)
+        public CompanyDateAttribute(string  _companyStartDate)
         {
 
             companyStartDate =DateTime.Parse(_companyStartDate);

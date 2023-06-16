@@ -12,9 +12,10 @@ namespace HrManagment.DAL.Models
     {
         public int Id { get; set; }
 
-        [HireDate("1/1/2008")]
+        [CompanyDate("1/1/2008")]
 
         public DateTime HireDate { get; set; }
+        [DateComparsion("HireDate")]
         public DateTime FireDate { get; set; }
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  
