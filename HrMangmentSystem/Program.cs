@@ -1,4 +1,5 @@
 using HrManagment.DAL.DBContext;
+using HrManagmentSystem.Core;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<HrManagmentContext>(option =>
 option.UseSqlServer(builder.Configuration["ConnectionStrings:HrManagement"])
 );
+builder.Services.RegisterServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

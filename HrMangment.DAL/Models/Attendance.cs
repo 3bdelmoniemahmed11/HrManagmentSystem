@@ -17,7 +17,8 @@ namespace HrManagment.DAL.Models
         public TimeSpan ?DepartureTime { get; set; }
         public DateTime Date { get; set; }  
         public bool ?IsDeleted { get; set; }
-        [ForeignKey("EmpId")]
+
+        [ForeignKey("Employee")]
         public int EmpId { get; set; }  
         public Employee Employee { get; set; }
     }

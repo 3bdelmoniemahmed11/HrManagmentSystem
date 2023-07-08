@@ -24,26 +24,26 @@ namespace HrManagment.DAL.Repositories
             if (exsitingEntity != null) table.Remove(exsitingEntity);
         }
 
-        public IQueryable<T> GetAll()
+        public async Task<IQueryable<T>> GetAllAsync()
         {
-            return table;
+              return await Task.FromResult(table);
         }
 
-        public T GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
          
-            return table.Find(id);
+            return await Task.FromResult(table.Find(id));
            
         }
 
-        public void Insert(T entity)
+        public async Task  InsertAsync(T entity)
         {
-            table.Add(entity);
+             await table.AddAsync(entity);
         }
 
-        public void Save()
+        public async Task  SaveAsync()
         {
-            hrMangmentContext.SaveChanges();
+           await  hrMangmentContext.SaveChangesAsync();
         }
 
         public void Update(T entity)

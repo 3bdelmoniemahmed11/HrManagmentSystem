@@ -19,6 +19,7 @@ namespace HrManagment.DAL.DBContext
         DbSet<GeneralSetting> GeneralSettings { get; set; }
         DbSet<OldSalary> OldSalary { get; set; }    
         DbSet<Vacation> Vacation { get; set; }  
+        DbSet<SalaryClickLog> salaryClickLog { get; set; }  
         
 
 
