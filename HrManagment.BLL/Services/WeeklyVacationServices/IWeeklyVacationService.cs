@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HrManagment.BLL.Services.VacationServices
 {
-    public interface IVacationService
+    public interface IWeeklyVacationService
     {
-        Task<List<Vacation>> GetAnnualVacationsByPeriod(DateTime startDate ,DateTime endDate);
         Task<int> GetNumberOfWeeklyVacationsByPeriod(DateTime startDate, DateTime endDate);
     }
 }

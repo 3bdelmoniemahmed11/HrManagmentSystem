@@ -15,17 +15,33 @@ namespace HrManagment.BLL.Services.SalaryClickLogServices
         {
             _salaryClickLogRepository = salaryClickLogRepository;
         }
-        public async  Task<DateTime> GetStartDate()
+        public async Task<DateTime> GetStartDate()
         {
-            var allDates = await _salaryClickLogRepository.GetAllAsync();
-            var startDate = allDates.LastOrDefault();
-            if(startDate != null) {
+            //var allDates = await _salaryClickLogRepository.GetAllAsync();
+            //var startDate = allDates.LastOrDefault();
+            //if (startDate != null)
+            //{
+            //    return startDate.Date;
+            //}
+            ////the first day from the actual month  and year 
+            //var defaultDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            //return defaultDate;
+
+            var allStartDates = await _salaryClickLogRepository.GetAllAsync();
+            var startDate = allStartDates.OrderBy(d => d.Id).LastOrDefault();
+
+            if (startDate != null)
+            {
                 return startDate.Date;
             }
             //the first day from the actual month  and year 
             var defaultDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             return defaultDate;
-          
+
+
         }
+
+
+
     }
 }

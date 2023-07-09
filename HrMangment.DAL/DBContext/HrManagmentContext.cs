@@ -17,8 +17,9 @@ namespace HrManagment.DAL.DBContext
         DbSet<Attendance> Attendance { get; set; }  
         DbSet<EmployeeContractDate> EmployeeContractDate { get; set; }  
         DbSet<GeneralSetting> GeneralSettings { get; set; }
-        DbSet<OldSalary> OldSalary { get; set; }    
-        DbSet<Vacation> Vacation { get; set; }  
+        DbSet<OldSalary> OldSalary { get; set; }
+        DbSet<WeeklyVacation> WeeklyVacation { get; set; }
+        DbSet<AnnualVacation> AnnualVacation { get; set; }
         DbSet<SalaryClickLog> salaryClickLog { get; set; }  
         
 

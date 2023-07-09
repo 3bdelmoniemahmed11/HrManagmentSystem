@@ -1,4 +1,5 @@
-﻿using HrManagment.BLL.Services.AttendanceService;
+﻿using HrManagment.BLL.Services.AnnualVacationServices;
+using HrManagment.BLL.Services.AttendanceService;
 using HrManagment.BLL.Services.EmployeeSalaryReport;
 using HrManagment.BLL.Services.EmployeeServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
@@ -11,7 +12,7 @@ namespace HrManagmentSystem.Core
 {
     public static class StartupExtension
     {
-    
+
         public static void RegisterServices(this IServiceCollection services)
         {
             RegisterEmployeeSalaryReport(services);
@@ -19,22 +20,26 @@ namespace HrManagmentSystem.Core
             RegisterAttendance(services);
             RegisterEmployee(services);
             RegisterSalaryClickLog(services);
-            RegisterVacation(services);
-
-         }
-        public static void RegisterEmployeeSalaryReport(IServiceCollection services)
-        {
-            services.AddScoped<IEmployeeSalaryReportService, EmployeeSalaryReportService>();
+            RegisterWeeklyVacation(services);
+            RegisterAnnualVacation(services);
         }
+
 
         public static void RegisterGenericRepository(IServiceCollection services)
         {
             services.AddScoped<IGenericRepository<OldSalary>, GenericRepository<OldSalary>>();
             services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
             services.AddScoped<IGenericRepository<SalaryClickLog>, GenericRepository<SalaryClickLog>>();
-            services.AddScoped<IGenericRepository<Vacation>, GenericRepository<Vacation>>();
-        }
+            services.AddScoped<IGenericRepository<WeeklyVacation>, GenericRepository<WeeklyVacation>>();
+            services.AddScoped<IGenericRepository<AnnualVacation>, GenericRepository<AnnualVacation>>();
+            services.AddScoped<IGenericRepository<Attendance>, GenericRepository<Attendance>>();
 
+
+        }
+        public static void RegisterEmployeeSalaryReport(IServiceCollection services)
+        {
+            services.AddScoped<IEmployeeSalaryReportService, EmployeeSalaryReportService>();
+        }
         public static void RegisterAttendance(IServiceCollection services)
         {
             services.AddScoped<IAttendanceService, AttendanceService>();
@@ -47,13 +52,16 @@ namespace HrManagmentSystem.Core
 
         public static void RegisterSalaryClickLog(IServiceCollection services)
         {
-            services.AddScoped<ISalaryClickLogService,SalaryClickLogService>();
+            services.AddScoped<ISalaryClickLogService, SalaryClickLogService>();
         }
-        public static void RegisterVacation(IServiceCollection services)
+        public static void RegisterWeeklyVacation(IServiceCollection services)
         {
-            services.AddScoped<IVacationService, VacationService>();
+            services.AddScoped<IWeeklyVacationService, WeeklyVacationService>();
         }
-
+        public static void RegisterAnnualVacation(IServiceCollection services)
+        {
+            services.AddScoped<IAnnualVacationService, AnnualVacationService>();
+        }
 
     }
 }

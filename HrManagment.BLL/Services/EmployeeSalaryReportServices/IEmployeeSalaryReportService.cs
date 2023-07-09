@@ -10,6 +10,8 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
     public interface IEmployeeSalaryReportService
     {
         Task InsertAsyn(OldSalary oldSalary);
+        Task<int> CalcOffDays(int EmployeeId);
+        Task<int> CalcAttendanceDays(int EmployeeId);
         Task SaveChanges();
     }
 }

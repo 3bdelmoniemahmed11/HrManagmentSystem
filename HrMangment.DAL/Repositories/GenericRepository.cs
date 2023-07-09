@@ -15,7 +15,7 @@ namespace HrManagment.DAL.Repositories
 
         public GenericRepository(HrManagmentContext _hrMangmentContext)
         {
-            hrMangmentContext= _hrMangmentContext;
+            hrMangmentContext = _hrMangmentContext;
             table = hrMangmentContext.Set<T>();
         }
         public void Delete(int id)
@@ -26,31 +26,38 @@ namespace HrManagment.DAL.Repositories
 
         public async Task<IQueryable<T>> GetAllAsync()
         {
-              return await Task.FromResult(table);
+            return await Task.FromResult(table);
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-         
-            return await Task.FromResult(table.Find(id));
-           
+
+            return await table.FindAsync(id);
+
         }
 
-        public async Task  InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
-             await table.AddAsync(entity);
+            await table.AddAsync(entity);
         }
 
-        public async Task  SaveAsync()
+        public async Task SaveAsync()
         {
-           await  hrMangmentContext.SaveChangesAsync();
+            await hrMangmentContext.SaveChangesAsync();
         }
 
         public void Update(T entity)
         {
             table.Attach(entity);
-            hrMangmentContext.Entry(entity).State = EntityState.Modified;   
+            hrMangmentContext.Entry(entity).State = EntityState.Modified;
         }
+
+        public async Task< IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
+        {
+            return  await Task.FromResult( table.Where(condition) ) ;
+        }
+
+
     }
-    
+        
 }
