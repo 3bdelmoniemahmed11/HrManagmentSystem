@@ -1,6 +1,8 @@
 ﻿using HrManagment.BLL.Services.AnnualVacationServices;
 using HrManagment.BLL.Services.AttendanceService;
+using HrManagment.BLL.Services.EmployeeSalaryReportServices.DTOs;
 using HrManagment.BLL.Services.EmployeeServices;
+using HrManagment.BLL.Services.GeneralSettingsServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
@@ -21,6 +23,8 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
         private readonly ISalaryClickLogService _salaryClickService;
         private readonly IWeeklyVacationService _weeklyVacationService;
         private readonly IAnnualVacationService _annualVacationService;
+        private readonly IEmployeeService _employeeService;
+        private readonly IGeneralSettingsService _generalSettingsService;
 
         public EmployeeSalaryReportService
         (   
@@ -28,7 +32,9 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
             IAttendanceService attendanceService,
             ISalaryClickLogService salaryClickService,
             IWeeklyVacationService weeklyVacationService,
-            IAnnualVacationService annualVacationService
+            IAnnualVacationService annualVacationService,
+            IEmployeeService employeeService,
+            IGeneralSettingsService generalSettingsService
         )
         {
             _oldSalaryRepository = oldSalaryRepository;
@@ -36,6 +42,8 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
             _salaryClickService = salaryClickService;
             _weeklyVacationService = weeklyVacationService;
             _annualVacationService = annualVacationService;
+            _employeeService = employeeService;
+            _generalSettingsService = generalSettingsService;
         }
         public async Task InsertAsyn(OldSalary oldSalary)
         {
@@ -66,6 +74,39 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
             return offDays;
         }
 
+        public async Task<double> CalcBounsHours(int EmployeeId,TimeSpan DefaultAttendanceTime,TimeSpan DefaultDepartureTime )
+        {
+            var bounsHours=0.00;
+            var actualWorkingHours = 0.0;
+            var startDate = await _salaryClickService.GetStartDate();
+            var endDate = DateTime.Now;
+           
+            var attendanceEmployeeRecrords = await _attendanceService.GetEmployeeAttendanceDays(EmployeeId, startDate.Date, endDate.Date);
+            var workingHoursPerDay = (DefaultDepartureTime - DefaultAttendanceTime).TotalHours;
+            TimeSpan workingHours;
+            foreach (var attendanceRecord in attendanceEmployeeRecrords) 
+            {
+                workingHours = (TimeSpan) (attendanceRecord.DepartureTime) - (attendanceRecord.AttendanceTime);
+                actualWorkingHours = workingHours.TotalHours;
+
+                if(actualWorkingHours>workingHoursPerDay)
+                {
+                    bounsHours+=( actualWorkingHours - workingHoursPerDay);
+                }
+            }
+
+            return bounsHours;
+        }
+
+        public async Task<double> CalcBounsHoursValue(double workingHours,double salary,double bounsHours)
+        {
+            //var employee = await _employeeService.GetByIdAsync(EmployeeId);
+            var DeductionAddationRecord=await _generalSettingsService.GetDeducation_Addation();
+            var HourValue = (salary / 30) / workingHours;
+            var BounsValue = bounsHours * DeductionAddationRecord.AddationValue * HourValue;
+            return BounsValue;
+
+        }
         public async Task SaveChanges()
         {
             await _oldSalaryRepository.SaveAsync();

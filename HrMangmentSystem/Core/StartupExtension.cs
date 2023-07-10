@@ -2,6 +2,7 @@
 using HrManagment.BLL.Services.AttendanceService;
 using HrManagment.BLL.Services.EmployeeSalaryReport;
 using HrManagment.BLL.Services.EmployeeServices;
+using HrManagment.BLL.Services.GeneralSettingsServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
@@ -33,6 +34,7 @@ namespace HrManagmentSystem.Core
             services.AddScoped<IGenericRepository<WeeklyVacation>, GenericRepository<WeeklyVacation>>();
             services.AddScoped<IGenericRepository<AnnualVacation>, GenericRepository<AnnualVacation>>();
             services.AddScoped<IGenericRepository<Attendance>, GenericRepository<Attendance>>();
+            services.AddScoped<IGenericRepository<GeneralSetting>, GenericRepository<GeneralSetting>>();
 
 
         }
@@ -61,6 +63,10 @@ namespace HrManagmentSystem.Core
         public static void RegisterAnnualVacation(IServiceCollection services)
         {
             services.AddScoped<IAnnualVacationService, AnnualVacationService>();
+        }
+        public static void RegisterGeneralSettings(IServiceCollection services)
+        {
+            services.AddScoped<IGeneralSettingsService, GeneralSettingsService>();
         }
 
     }

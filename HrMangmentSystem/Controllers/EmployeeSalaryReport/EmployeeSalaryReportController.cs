@@ -20,5 +20,7 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
             var res = await _employeeSalaryReportService.CalcOffDays(id);
             return Ok(res);
         }
+
+      
     }
 }
