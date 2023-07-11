@@ -23,6 +23,7 @@ import { ShowusersComponent } from './Component/showusers/showusers.component';
 import { PrintFormComponent } from './Component/print-form/print-form.component';
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations:[
@@ -51,6 +52,7 @@ import { PermissionComponent } from './Component/permission/permission.component
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
