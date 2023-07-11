@@ -81,6 +81,16 @@ namespace HrManagment.DAL.Repositories
             }
             return resultList;
         }
+        public async Task<IEnumerable<T>> GetIncluded( string propPath)
+        {
+            var resultList = table.Include(propPath).ToList();
+            table.Local.Clear();
+            foreach (var entity in resultList)
+            {
+                hrMangmentContext.Entry(entity).State = EntityState.Detached;
+            }
+            return resultList;
+        }
 
 
     }
