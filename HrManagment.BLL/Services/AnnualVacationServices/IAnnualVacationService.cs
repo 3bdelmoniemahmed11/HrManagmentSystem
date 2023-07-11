@@ -9,7 +9,12 @@ namespace HrManagment.BLL.Services.AnnualVacationServices
 {
     public interface IAnnualVacationService
     {
+
+        Task<IEnumerable<AnnualVacation>> GetAll();
+        Task insert(AnnualVacation vacation);
+        Task update(AnnualVacation vacation);
         Task<List<AnnualVacation>> GetAnnualVacationsByPeriod(DateTime startDate, DateTime endDate);
+  
 
     }
 }
