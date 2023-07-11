@@ -2,7 +2,7 @@
 using HrManagment.BLL.Services.AttendanceService;
 using HrManagment.BLL.Services.EmployeeSalaryReport;
 using HrManagment.BLL.Services.EmployeeServices;
-using HrManagment.BLL.Services.GeneralSettingsServices;
+using HrManagment.BLL.Services.GeneralSettingServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
@@ -23,7 +23,7 @@ namespace HrManagmentSystem.Core
             RegisterSalaryClickLog(services);
             RegisterWeeklyVacation(services);
             RegisterAnnualVacation(services);
-            RegisterGeneralSettings(services);
+            RegisterGeneralSetting(services);
         }
 
 
@@ -65,7 +65,7 @@ namespace HrManagmentSystem.Core
         {
             services.AddScoped<IAnnualVacationService, AnnualVacationService>();
         }
-        public static void RegisterGeneralSettings(IServiceCollection services)
+        public static void RegisterGeneralSetting(IServiceCollection services)
         {
             services.AddScoped<IGeneralSettingsService, GeneralSettingsService>();
         }

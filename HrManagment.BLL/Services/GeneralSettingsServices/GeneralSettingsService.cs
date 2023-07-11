@@ -6,19 +6,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrManagment.BLL.Services.GeneralSettingsServices
+namespace HrManagment.BLL.Services.GeneralSettingServices
 {
     public class GeneralSettingsService : IGeneralSettingsService
     {
-        private readonly IGenericRepository<GeneralSetting> _genericRepository ;
-        public GeneralSettingsService(IGenericRepository<GeneralSetting> genericRepository)
+        public readonly IGenericRepository<GeneralSetting> Services;
+        public GeneralSettingsService(IGenericRepository<GeneralSetting> _Services)
         {
-            _genericRepository= genericRepository;
+            Services=_Services;
         }
-        public async Task<GeneralSetting> GetDeducation_Addation()
+        public async Task<IEnumerable<GeneralSetting>> GetAll()
         {
-            var generalSettings= await  _genericRepository.GetFilteredAsync(gs => gs.EndDate == null);
-            return   generalSettings.FirstOrDefault();
+            return await Services.GetAllAsync();
+        }
+
+        public async Task<GeneralSetting> GetLastSetting()
+        {
+            var services = await Services.GetAllAsync();
+            return (GeneralSetting)services.FirstOrDefault(g => g.EndDate == null);
+        }
+
+        public async Task Insert(GeneralSetting choices)
+        {
+            Services.InsertAsync(choices);
+            await Services.SaveAsync();
+        }
+
+        public async Task Update(GeneralSetting choices)
+        {
+            Services.Update(choices);
+            await Services.SaveAsync();
         }
     }
 }
