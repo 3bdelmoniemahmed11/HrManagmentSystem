@@ -18,15 +18,15 @@ namespace HrManagment.DAL.Repositories
             hrMangmentContext = _hrMangmentContext;
             table = hrMangmentContext.Set<T>();
         }
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            T exsitingEntity = table.Find(id);
+            T exsitingEntity = await table.FindAsync(id);
             if (exsitingEntity != null) table.Remove(exsitingEntity);
         }
 
-        public async Task<IQueryable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await Task.FromResult(table);
+            return await table.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -52,12 +52,37 @@ namespace HrManagment.DAL.Repositories
             hrMangmentContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public async Task< IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
+        public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
         {
-            return  await Task.FromResult( table.Where(condition) ) ;
+            return await Task.FromResult(table.Where(condition));
+        }
+
+        //public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        //{
+        //    return await Task.FromResult(table.Include(propPath).Where(condition));
+        //}
+
+
+
+        public async Task InsertListAsync(List<T> list)
+        {
+            await table.AddRangeAsync(list);
+        }
+
+
+
+        public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        {
+            var resultList = table.Include(propPath).Where(condition).ToList();
+            table.Local.Clear();
+            foreach (var entity in resultList)
+            {
+                hrMangmentContext.Entry(entity).State = EntityState.Detached;
+            }
+            return resultList;
         }
 
 
     }
-        
+
 }

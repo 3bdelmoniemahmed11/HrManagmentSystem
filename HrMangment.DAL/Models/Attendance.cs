@@ -13,6 +13,7 @@ namespace HrManagment.DAL.Models
     {
         public int Id { get; set; } 
         public TimeSpan AttendanceTime { get; set; }
+
         [TimeSpanComparison("AttendanceTime")]
         public TimeSpan ?DepartureTime { get; set; }
         public DateTime Date { get; set; }  
@@ -20,6 +21,6 @@ namespace HrManagment.DAL.Models
 
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
     }
 }
