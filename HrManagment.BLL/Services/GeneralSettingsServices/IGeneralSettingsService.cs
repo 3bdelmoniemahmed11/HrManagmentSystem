@@ -8,6 +8,7 @@ namespace HrManagment.BLL.Services.GeneralSettingServices
         Task<GeneralSetting> GetLastSetting();
         Task Insert(GeneralSetting choices);
         Task Update(GeneralSetting choices);
+        Task<GeneralSetting> GetDeducation_Addation();
 
     }
 }
