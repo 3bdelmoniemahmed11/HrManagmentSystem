@@ -18,9 +18,10 @@ namespace HrManagmentSystem.Controllers.General_Setting
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(generalSetting.GetLastSetting());
+            var generalsettings =await  generalSetting.GetLastSetting();
+            return Ok(generalsettings);
         }
 
         [HttpPost]
