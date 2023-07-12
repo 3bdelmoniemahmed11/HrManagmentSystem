@@ -9,10 +9,13 @@
               type="text"
               class="form-control rounded-pill"
               placeholder="Employee name"
+              name="EmployeeName"
+              [(ngModel)]="EmployeeName"
+              (keyup)="SearchByEmployeeName()"
             />
           </div>
           <div class="col-lg-3 col-md-12 m-2">
-            <input type="date" class="form-control rounded-pill" />
+            <input type="date" class="form-control rounded-pill"name="datevalue" [(ngModel)]="dateValue" (change)="SearchByDate()" />
           </div>
           <div class="col-lg-2 col-md-12">
             <button type="submit" class="btn btn-primary mb-3 m-2">
@@ -35,6 +38,7 @@
             <table
               class="table table-striped table-hover expandable-table dataTable no-footer w-100"
               role="grid"
+              id="sss"
             >
               <thead>
                 <tr role="row">
@@ -51,9 +55,9 @@
                   <th>Invoice</th>
                 </tr>
               </thead>
-              
+
               <tbody>
-                <tr *ngFor="let emp of salaryReport; let i = index">
+                <tr *ngFor="let emp of filteredSalaryReport; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td class="select-checkbox">{{ emp.employee.name }}</td>
                   <td>{{ emp.departmentName }}</td>
@@ -65,9 +69,9 @@
                   <td>{{ emp.bounsHoursValue }}</td>
                   <td>{{ emp.lateHoursValue }}</td>
                   <td>
-                    <a [routerLink]="['/Print']"
-                      ><i class="text-danger fa-solid fa-print"></i
-                    ></a>
+                    <a [routerLink]="['/print']">
+                      <i class="text-danger fa-solid fa-print"></i>
+                    </a>
                   </td>
                 </tr>
               </tbody>

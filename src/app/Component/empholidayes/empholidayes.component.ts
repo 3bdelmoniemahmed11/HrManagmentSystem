@@ -42,7 +42,8 @@ export class EmpholidayesComponent implements OnInit {
     this.Generalsetting.getLastSetting().subscribe({
       next: (result) => {
         this.Setting = result;
-        this.Setting = this.Setting.result;
+        this.Setting = this.Setting;
+        console.log(this.Setting);
 
         if (this.Setting != null) {
           this.settingForm.controls['Extra'].setValue(this.Setting.addationValue);
@@ -84,27 +85,40 @@ export class EmpholidayesComponent implements OnInit {
       return;
     }
 
+    this.WeeklyFunction();
+    this.UpdateWDays();
+    this.AddWDays();
+    if (this.Setting == null) {
+      this.AddNSetting();
+      Swal.fire({
+        icon: 'success',
+        title: 'Data Updated',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (
+      this.Setting.deductionValue !=
+        this.settingForm.controls['Discount'].value ||
+      this.Setting.addationValue != this.settingForm.controls['Extra'].value
+    ) {
+      this.UpdateSetting(this.AddNSetting.bind(this)); // Pass AddNSetting function as a callback
+      Swal.fire({
+        icon: 'success',
+        title: 'Data Updated',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
 
-   this.WeeklyFunction();
-   this.UpdateWDays();
-   this.AddWDays();
-   if( this.Setting.deductionValue!=this.settingForm.controls['Discount'].value || this.Setting.addationValue!=this.settingForm.controls['Extra'].value){
-    this.UpdateSetting(this.AddNSetting.bind(this)); // Pass AddNSetting function as a callback
-    Swal.fire({
-      icon: 'success',
-      title: 'Data Updated',
-      showConfirmButton: false,
-      timer: 1500,
-    });
- }
-  else if(this.old!=null || this.new!=null ){
-    Swal.fire({
-      icon: 'success',
-      title: 'Data Updated',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  }
+    if (this.old != null || this.new != null) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Data Updated',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+    window.location.reload();
   }
 
   WeeklyFunction(){
