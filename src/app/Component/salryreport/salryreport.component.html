@@ -15,7 +15,13 @@
             />
           </div>
           <div class="col-lg-3 col-md-12 m-2">
-            <input type="date" class="form-control rounded-pill"name="datevalue" [(ngModel)]="dateValue" (change)="SearchByDate()" />
+            <input
+              type="date"
+              class="form-control rounded-pill"
+              name="datevalue"
+              [(ngModel)]="dateValue"
+              (change)="SearchByDate()"
+            />
           </div>
           <div class="col-lg-2 col-md-12">
             <button type="submit" class="btn btn-primary mb-3 m-2">
@@ -57,8 +63,19 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let emp of filteredSalaryReport; let i = index">
-                  <td>{{ i + 1 }}</td>
+                <tr
+                  *ngFor="
+                    let emp of filteredSalaryReport
+                      | paginate
+                        : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                          };
+                    let i = index
+                  "
+                >
+                  <td>{{ getRowNumber(i) }}</td>
                   <td class="select-checkbox">{{ emp.employee.name }}</td>
                   <td>{{ emp.departmentName }}</td>
                   <td>{{ emp.baseSalary }}</td>
@@ -69,13 +86,21 @@
                   <td>{{ emp.bounsHoursValue }}</td>
                   <td>{{ emp.lateHoursValue }}</td>
                   <td>
-                    <a [routerLink]="['/print']">
+                    <a (click)="navigateToPrint(emp)">
                       <i class="text-danger fa-solid fa-print"></i>
                     </a>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+              <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+              >
+              </pagination-controls>
+            </div>
           </div>
         </div>
       </div>

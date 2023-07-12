@@ -24,9 +24,9 @@ import { PrintFormComponent } from './Component/print-form/print-form.component'
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
-  declarations:[
+  declarations: [
     AppComponent,
     NavbarComponent,
     ProfileComponent,
@@ -45,16 +45,17 @@ import { HttpClientModule } from '@angular/common/http';
     ShowusersComponent,
     PrintFormComponent,
     LoginComponent,
-    PermissionComponent
+    PermissionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
