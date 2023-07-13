@@ -7,7 +7,7 @@ namespace HrManagment.BLL.Services.DepartmentServices
         Task<IEnumerable<Department>> Get();
         Task insert(Department department);
         Task update(Department department);
-        public  string GetDeptName(int departmentId);
+        public  Task<string>GetDeptName(int departmentId);
 
     }
 }

@@ -18,6 +18,6 @@ namespace HrManagment.BLL.Services.EmployeeServices
         Task UpdateAsync(Employee employee);
         Task DeleteAsync(int empId);
         public  Task<IEnumerable<Employee>> GetEmployee_Deparmtnet();
-        public  Task<int> GetEmployeeByPhone(string empPhone)
+        public Task<int> GetEmployeeByPhone(string empPhone);
     }
 }

@@ -54,48 +54,17 @@ namespace HrManagment.DAL.Repositories
 
         }
 
+        public async Task InsertListAsync(List<T> list)
+        {
+            await table.AddRangeAsync(list);
+        }
 
         public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
         {
             return await Task.FromResult(table.Where(condition));
         }
 
-        //public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
-        //{
-        //    return await Task.FromResult(table.Include(propPath).Where(condition));
-        //}
-
-
-
-        public async Task InsertListAsync(List<T> list)
-        {
-            await table.AddRangeAsync(list);
-        }
-
-
-
-        public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
-        {
-            var resultList = table.Include(propPath).Where(condition).ToList();
-
-        public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
-        {
-            return await Task.FromResult(table.Where(condition));
-        }
-
-        //public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
-        //{
-        //    return await Task.FromResult(table.Include(propPath).Where(condition));
-        //}
-
-
-
-        public async Task InsertListAsync(List<T> list)
-        {
-            await table.AddRangeAsync(list);
-        }
-
-
+      
 
         public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
         {
@@ -118,7 +87,7 @@ namespace HrManagment.DAL.Repositories
             return resultList;
 
         }
-    
+
 
         public async Task<T> GetByIdAsynAsNoTracking(int id)
         {

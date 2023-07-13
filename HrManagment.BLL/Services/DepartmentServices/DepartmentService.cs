@@ -32,10 +32,10 @@ namespace HrManagment.BLL.Services.DepartmentServices
             _Departmentrepository.Update(department);
             await _Departmentrepository.SaveAsync();
         }
-        public string GetDeptName(int departmentId)
+        public async Task<string> GetDeptName(int departmentId)
         {
          
-           var department= _Departmentrepository.GetByIdAsNoTracking(departmentId);
+           var department= await _Departmentrepository.GetByIdAsynAsNoTracking(departmentId);
             return department.Name; 
         }
     }
