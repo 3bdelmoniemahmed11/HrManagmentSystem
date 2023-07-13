@@ -1,17 +1,16 @@
-<div class="row">
+<div class="row" id="printSection">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="container mb-5 mt-3">
           <div class="row d-flex align-items-baseline">
             <div class="col-xl-9">
-              <p class="card-title">Invoice >> <strong>ID: #123-123</strong></p>
+             
             </div>
             <div class="col-xl-3 float-end">
-              <a class="btn btn-light text-capitalize border-0 mr-3" data-mdb-ripple-color="dark"><i
-                  class="fas fa-print text-primary"></i> Print</a>
-              <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
-                  class="far fa-file-pdf text-danger"></i> Export</a>
+              <button class="btn btn-light text-capitalize border-0 mr-3" data-mdb-ripple-color="dark" (click)="printSection()" ><i
+                  class="fas fa-print text-primary"></i> Print</button>
+           
             </div>
             <hr>
           </div>
@@ -29,22 +28,17 @@
             <div class="row">
               <div class="col-xl-8">
                 <ul class="list-unstyled">
-                  <li class="text-black font-weight-bold">To: <span>Name Employee</span></li>
-                  <li class="text-muted">Street, City</li>
-                  <li class="text-muted">State, Country</li>
-                  <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
+                  <li class="text-black font-weight-bold">To: <span>{{employeeData?.employee?.name}}</span></li>
+                  <li class="text-muted">Address :{{employeeData?.employee?.address}}</li>
+                  <li class="text-muted"><i class="fas fa-phone"></i> {{employeeData?.employee?.phone}}</li>  
                 </ul>
               </div>
               <div class="col-xl-4">
-                <p class="text-muted">Invoice</p>
+              
                 <ul class="list-unstyled">
                   <li class="text-muted"><i class="fas fa-circle" style="color:#4B49AC ;"></i> <span
-                      class="fw-bold">ID:</span>#123-456</li>
-                  <li class="text-muted"><i class="fas fa-circle" style="color:#4B49AC ;"></i> <span
-                      class="fw-bold">Creation Date: </span>Jun 23,2021</li>
-                  <li class="text-muted"><i class="fas fa-circle" style="color:#4B49AC ;"></i> <span
-                      class="me-1 fw-bold">Status:</span><span class="badge bg-success text-black fw-bold">
-                      Active</span></li>
+                      class="fw-bold"><b>Creation Date:</b> </span>{{getDateNow()}}</li>
+                 
                 </ul>
               </div>
             </div>
@@ -52,57 +46,50 @@
             <div class="row my-2 mx-1 justify-content-center table-responsive">
               <table class="table expandable-table dataTable no-footer w-100" role="grid">
                 <thead style="background-color:#84B0CA ;" class="text-white">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Salary</th>
-                    <th scope="col">Overtime(EGP)</th>
-                    <th scope="col">Deduction(EGP)</th>
-                    <th scope="col">Total(EGP)</th>
-                  </tr>
+              
+                   <tr role="row">
+                  <th>Number</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Salary</th>
+                  <th>Attendance Days</th>
+                  <th>Off Days</th>
+                  <th>Overtime</th>
+                  <th>Deduction</th>
+              
+                 
+                </tr>
+                
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Ahmed</td>
-                    <td>4</td>
-                    <td>$200</td>
-                    <td>$800</td>
-                    <td>$800</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Ali</td>
-                    <td>1</td>
-                    <td>$10</td>
-                    <td>$10</td>
-                    <td>$800</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Amr</td>
-                    <td>1 year</td>
-                    <td>$300</td>
-                    <td>$300</td>
-                    <td>$800</td>
-                  </tr>
+                 <tr>
+                  <td>1</td>
+                  <td class="select-checkbox">{{ employeeData?.employee?.name }}</td>
+                  <td>{{ employeeData.departmentName }}</td>
+                  <td>{{ employeeData.baseSalary }}</td>
+                  <td>{{ employeeData.attendanceDays }}</td>
+                  <td>{{ employeeData.offDays }}</td>
+                  <td>{{ employeeData.bounsHours }}</td>
+                  <td>{{ employeeData.lateHours | date : "s" }}</td>
+                 
+                  
+                </tr>
+                  
                 </tbody>
 
               </table>
             </div>
             <div class="row">
-              <div class="col-xl-8">
-                <p class="ms-3">Add additional notes and Salary information</p>
-
-              </div>
+            
               <div class="col-xl-3">
                 <ul class="list-unstyled">
-                  <li class="text-muted ms-3"><span class="text-black me-4">Overtime(EGP)</span>$1110</li>
-                  <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Deduction(EGP)</span>$111
+                 
+                  <li class="text-muted ms-3"><span class="text-black me-4">Overtime(EGP): </span>{{ employeeData.bounsHoursValue }}</li>
+                  <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Deduction(EGP): </span>{{ employeeData.lateHoursValue }}
                   </li>
                 </ul>
                 <p class="text-black float-start"><span class="text-black me-3"> Total Salary</span><span
-                    style="font-size: 25px;">$1221</span></p>
+                    style="font-size: 25px;">{{ employeeData?.netSalary}}</span></p>
               </div>
             </div>
 

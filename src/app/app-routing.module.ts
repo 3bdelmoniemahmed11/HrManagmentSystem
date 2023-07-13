@@ -22,8 +22,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'newemployee', component: NewemployeeComponent },
+
   { path: 'addDepartment', component: AddDeptComponent },
   { path: 'addGroup', component: AddGroupComponent },
   { path: 'salaryrepot', component: SalryreportComponent },
@@ -31,11 +30,16 @@ const routes: Routes = [
   { path: 'empHoliday', component: EmpholidayesComponent },
   { path: 'officialvac', component: OfficialvacComponent },
   { path: 'attendance', component: AttendanceComponent },
-  { path: 'allEmp', component: AllemployeesComponent },
+
   { path: 'showDepts', component: ShowdepartsComponent },
   { path: 'showUsers', component: ShowusersComponent },
   { path: 'Print', component: PrintFormComponent },
   { path: 'permission', component: PermissionComponent },
+//alla
+  { path: 'allEmp', component: AllemployeesComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'allEmp/:id', component: ProfileComponent },
+  { path: 'newemployee/:id/edit', component: NewemployeeComponent },
 ];
 
 @NgModule({

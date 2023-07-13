@@ -5,25 +5,51 @@
       <div class="col-12 grid-margin">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Add Employee</h4>
-              <form class="form-sample">
+              <h4 class="card-title">{{EmployeeId != 0 ? "Edit Employee" : "Add Employee" }}</h4>
+              <form class="form-sample" [formGroup]="employeeForm" (submit)="formHandler($event)">
                 <p class="card-description">
                   Personal Information
                 </p>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">First Name</label>
+                      <label class="col-sm-3 col-form-label">Employee Full Name</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="name" />
+                        <ng-container *ngIf="getName.touched">
+                          <div
+                            *ngIf="getName.hasError('required')"
+                            id="emailHelp"
+                            class="form-text text-danger"
+                          >
+                            Name Is Required
+                          </div>
+                          <div
+                            *ngIf="getName.hasError('minlength')"
+                            id="emailHelp"
+                            class="form-text text-danger"
+                          >
+                             Name Length must be >= 3
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Last Name</label>
+                      <label class="col-sm-3 col-form-label">Department</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" />
+                        <select  class="form-control" formControlName="department">
+                          <option *ngFor ="let department of Departments;let i =index" value={{department.id}}>{{department.name}}</option>
+                        </select>
+                        <ng-container *ngIf="getdepartment.touched">
+                          <div
+                            *ngIf="getdepartment.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          Department Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -33,7 +59,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nationality</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="nationality" />
+                        <ng-container *ngIf="getNationality.touched">
+                          <div
+                            *ngIf="getNationality.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          Nationality Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -41,7 +75,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Address</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="address" />
+                        <ng-container *ngIf="getaddress.touched">
+                          <div
+                            *ngIf="getaddress.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          Address Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -51,10 +93,18 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Gender</label>
                       <div class="col-sm-9">
-                        <select class="form-control">
-                          <option>Male</option>
-                          <option>Female</option>
+                        <select class="form-control" formControlName="gender">
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
                         </select>
+                        <ng-container *ngIf="getgender.touched">
+                          <div
+                            *ngIf="getgender.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          Gender Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -62,7 +112,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">BirthDay</label>
                       <div class="col-sm-9">
-                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"/>
+                        <input type="date" class="form-control" formControlName="birthDate" placeholder="dd/mm/yyyy"/>
+                        <ng-container *ngIf="getbirth.touched">
+                          <div
+                            *ngIf="getbirth.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          BirthDate Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -72,7 +130,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">National ID</label>
                       <div class="col-sm-9">
-                          <input type="number" class="form-control" />
+                          <input type="text" class="form-control"formControlName="ssn" />
+                          <ng-container *ngIf=" getssn.touched">
+                            <div
+                              *ngIf=" getssn.hasError('required')"
+                              class="form-text text-danger"
+                            >
+                            NationalID Is Required
+                            </div>
+                          </ng-container>
                         </div>
                     </div>
                   </div>
@@ -80,7 +146,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Phone Number</label>
                       <div class="col-sm-9">
-                        <input type="number" class="form-control" placeholder=""/>
+                        <input type="text" class="form-control" formControlName="phone"/>
+                        <ng-container *ngIf="getphone.touched">
+                          <div
+                            *ngIf="getphone.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          phone Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -95,7 +169,15 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">HirDate</label>
                       <div class="col-sm-9">
-                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"/>
+                        <input type="date" class="form-control" formControlName="hirDate" placeholder="dd/mm/yyyy"/>
+                        <ng-container *ngIf="getHirdate.touched">
+                          <div
+                            *ngIf="getHirdate.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          HirDate Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
@@ -103,7 +185,15 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Salary</label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" placeholder=""/>
+                          <input type="number" class="form-control" formControlName="netsalary"/>
+                          <ng-container *ngIf="getNetSalary.touched">
+                            <div
+                              *ngIf="getNetSalary.hasError('required')"
+                              class="form-text text-danger"
+                            >
+                             NetSalary Is Required
+                            </div>
+                          </ng-container>
                         </div>
                       </div>
                     </div>
@@ -113,7 +203,15 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">InTime</label>
                         <div class="col-sm-9">
-                          <input type="time" class="form-control" placeholder="dd/mm/yyyy"/>
+                          <input type="time" class="form-control" formControlName="attendanceTime"/>
+                          <ng-container *ngIf="getattendanceTime.touched">
+                            <div
+                              *ngIf="getattendanceTime.hasError('required')"
+                              class="form-text text-danger"
+                            >
+                            attendanceTime Is Required
+                            </div>
+                          </ng-container>
                         </div>
                       </div>
                     </div>
@@ -121,15 +219,25 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">OutTime</label>
                       <div class="col-sm-9">
-                        <input type="time" class="form-control" placeholder="dd/mm/yyyy"/>
+                        <input type="time" class="form-control" formControlName="departureTime"/>
+                        <ng-container *ngIf="getdepartureTime.touched">
+                          <div
+                            *ngIf="getdepartureTime.hasError('required')"
+                            class="form-text text-danger"
+                          >
+                          departureTime Is Required
+                          </div>
+                        </ng-container>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12 mx-2 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary mr-2">Save</button>
-                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                <button (click)="ConfirmAddEmployee()"class="btn btn-light">Back</button>
+                <a (click)="Delete(EmployeeId)" [hidden]="EmployeeId == 0 ">
                 <button type="submit" class="btn btn-primary mr-2">Delete</button>
+              </a>
                 </div>
               </form>
             </div>

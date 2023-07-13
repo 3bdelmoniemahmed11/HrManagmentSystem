@@ -10,12 +10,13 @@
 
           <div class="col-lg-5 col-md-12 d-flex justify-content-center ">
             <label for="GroupName" class="pt-3 mr-4">Search</label>
-            <input type="text"  id="GroupName" class="form-control rounded-pill" name="search" id="search"
-              placeholder="Employee name">
+            <input type="text" [(ngModel)]="searchTerm" id="GroupName" class="form-control rounded-pill" name="search" id="search"
+              placeholder="Employee name" >
           </div>
 
+
           <div class="col-lg-2 col-md-12 ml-5 pl-5">
-            <a [routerLink]="['/newemployee']"><button class="btn btn-primary mb-3 m-2"><i
+            <a [routerLink]="['/newemployee',0,'edit']"><button class="btn btn-primary mb-3 m-2"><i
                   class="fa-solid fa-plus"></i></button></a>
           </div>
         </div>
@@ -37,23 +38,23 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-                  <td>5 PM</td>
-                  <td><a href="#" class="text-dark">
+                <tr *ngFor ="let employee of Employees;let i =index" >
+                  <td>{{i+1}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.phone}}</td>
+                  <td>{{employee.gender}}</td>
+                  <td>{{employee.netSalary}}</td>
+                  <td>{{employee.attendanceTime}}</td>
+                  <td>{{employee.departureTime}}</td>
+                  <td><a [routerLink]="[employee.id]" class="text-dark">
                     more<i class="fa-solid fa-circle-info fa-lg ml-2 text-info"></i>
                     </a></td>
-                  <td><a href="#" >
+                  <td><a [routerLink]="['/newemployee',employee.id,'edit']" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)" class="bi bi-pen-fill" viewBox="0 0 16 16">
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
                   </svg>
                     </a>
-                    <a href="#" onclick="">
+                    <a (click)="Delete(employee.id)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                       <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                     </svg>
@@ -73,13 +74,13 @@
 
 
           <div class="row justify-content-center mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac" class="page-item bi bi-arrow-left-circle-fill mx-3" viewBox="0 0 16 16" onclick="previousPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac" class="page-item bi bi-arrow-left-circle-fill mx-3" viewBox="0 0 16 16" >
               <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
             </svg>
             <ul class="pagination" id="pagination">
 
             </ul>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac" class="page-item bi bi-arrow-right-circle-fill mx-3" viewBox="0 0 16 16" onclick="nextPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac" class="page-item bi bi-arrow-right-circle-fill mx-3" viewBox="0 0 16 16" >
               <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
             </svg>
           </div>
