@@ -16,8 +16,9 @@ namespace HrManagment.DAL.Models
 
         [TimeSpanComparison("AttendanceTime")]
         public TimeSpan ?DepartureTime { get; set; }
-        public DateTime Date { get; set; }  
-        public bool ?IsDeleted { get; set; }
+        
+        public DateTime Date { get; set; }
+        public bool? IsDeleted { get; set; } = false;
 
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  

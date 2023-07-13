@@ -17,7 +17,12 @@ namespace HrManagment.DAL.Helpers
                 .ForMember(dest => dest.EmpName, opt => opt.MapFrom(src => src.Employee.Name))
                 .ForMember(dest => dest.DeptName, opt => opt.MapFrom(src => src.Employee.Department.Name));
 
-            CreateMap<EmpAttendanceDTO, Attendance>();
+
+            CreateMap<EmpAttendanceDTO, Attendance>()
+                   .ForMember(dest => dest.AttendanceTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.AttendanceTime)))
+                .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.DepartureTime)));
+
+
         }
     }
     

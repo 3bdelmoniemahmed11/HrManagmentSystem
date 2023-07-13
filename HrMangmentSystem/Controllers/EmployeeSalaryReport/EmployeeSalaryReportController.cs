@@ -17,6 +17,24 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
             _employeeSalaryReportService = employeeSalaryReportService;
             _employeeService = employeeService;
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> getOffDays(int id)
+        //{
+        //    var res = await _employeeSalaryReportService.CalcOffDays(id);
+        //    return Ok(res);
+        //}
+
+
+ 
+
+        [HttpPost]
+        public async Task<IActionResult> CalacAllEmpSalaries()
+        {
+            await _employeeSalaryReportService.CalcSalariesForAllEmps();
+            return Ok("added successfuly");
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllOldSalaries()
         {
@@ -26,6 +44,6 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
             return Ok(res);
         }
 
-    
+
     }
 }

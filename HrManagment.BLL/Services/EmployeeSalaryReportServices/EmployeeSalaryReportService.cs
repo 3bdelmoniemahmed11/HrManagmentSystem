@@ -205,9 +205,9 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
 
         public async Task<IEnumerable<OldSalary>> GetAll() 
         {
+
             var res = await _oldSalaryRepository.GetIncluded("Employee");
          
-
             return  res;
         }
     }

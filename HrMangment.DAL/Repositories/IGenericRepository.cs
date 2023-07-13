@@ -10,16 +10,16 @@ namespace HrManagment.DAL.Repositories
     {
         Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> predicate);
         Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath);
-        Task<IEnumerable<T>> GetIncluded(string propPath);
         Task<IEnumerable<T>>GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task InsertAsync(T entity);  
-        void Update(T entity);  
+        Task<T> GetByIdAsynAsNoTracking(int id);
+        Task InsertAsync(T entity);
+        Task Update(T entity);  
         Task Delete(int id);
         Task SaveAsync();
         Task InsertListAsync(List<T> list);
-        public T GetByIdAsNoTracking(int id);
-
+        Task<IEnumerable<T>> GetIncluded(string propPath);
+   
 
     }
 }

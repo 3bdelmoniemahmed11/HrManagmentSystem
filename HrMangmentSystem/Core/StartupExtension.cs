@@ -25,9 +25,11 @@ namespace HrManagmentSystem.Core
             RegisterSalaryClickLog(services);
             RegisterWeeklyVacation(services);
             RegisterAnnualVacation(services);
+
             RegisterGeneralSetting(services);
             RegisterDepartment(services);
             RegisterEmployeeConteractData(services);
+
         }
 
 

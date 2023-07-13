@@ -13,6 +13,7 @@ namespace HrManagment.BLL.Services.EmployeeServices
         Task<IEnumerable<Employee>> GetAllAsync();
         Task<Employee> GetByIdAsync(int EmployeeId);
         Task<IEnumerable<Employee>> GetAllEmpsIncludingDeptAsync();
+
         Task InsertAsync(Employee employee);
         Task UpdateAsync(Employee employee);
         Task DeleteAsync(int empId);

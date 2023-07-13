@@ -47,11 +47,36 @@ namespace HrManagment.DAL.Repositories
             await hrMangmentContext.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             table.Attach(entity);
             hrMangmentContext.Entry(entity).State = EntityState.Modified;
+
         }
+
+
+        public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
+        {
+            return await Task.FromResult(table.Where(condition));
+        }
+
+        //public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        //{
+        //    return await Task.FromResult(table.Include(propPath).Where(condition));
+        //}
+
+
+
+        public async Task InsertListAsync(List<T> list)
+        {
+            await table.AddRangeAsync(list);
+        }
+
+
+
+        public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        {
+            var resultList = table.Include(propPath).Where(condition).ToList();
 
         public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
         {
@@ -91,17 +116,18 @@ namespace HrManagment.DAL.Repositories
                 hrMangmentContext.Entry(entity).State = EntityState.Detached;
             }
             return resultList;
+
         }
-        public T GetByIdAsNoTracking(int id)
+    
+
+        public async Task<T> GetByIdAsynAsNoTracking(int id)
         {
-            var entity =  table.Find(id);
+            var entity = await table.FindAsync(id);
             if (entity != null)
                 hrMangmentContext.Entry(entity).State = EntityState.Detached;
 
             return entity;
         }
-
-
     }
 
 }

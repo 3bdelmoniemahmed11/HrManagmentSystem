@@ -12,6 +12,7 @@ namespace HrManagment.DAL.Models
     {
         public int Id { get; set; } 
         public DateTime StartDate { get; set; }
+        [DateComparsion("StartDate")]
         public DateTime? EndDate { get; set; }
         [Range(0, int.MaxValue, ErrorMessage = "The value must be a positive number.")]
         public int DeductionValue { get; set; }

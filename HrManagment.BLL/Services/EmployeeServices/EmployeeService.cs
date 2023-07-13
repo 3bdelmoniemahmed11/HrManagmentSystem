@@ -30,6 +30,7 @@ namespace HrManagment.BLL.Services.EmployeeServices
         {
             return await _EmployeeRepository.GetFilteredIncluded(e => e.IsDeleted == false, "Department");
         }
+
         public async Task UpdateAsync(Employee employee)
         {
             _EmployeeRepository.Update(employee);
@@ -63,5 +64,6 @@ namespace HrManagment.BLL.Services.EmployeeServices
 
             return  res.FirstOrDefault().Id;
         }
+
     }
 }

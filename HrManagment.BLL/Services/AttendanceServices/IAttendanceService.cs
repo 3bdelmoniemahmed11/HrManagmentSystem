@@ -15,5 +15,10 @@ namespace HrManagment.BLL.Services.AttendanceService
         Task Delete(int id);
         Task AddAttAsync(Attendance attendance);
 
+
+        Task<Attendance> GetByIdAsync(int id);
+        Task Update(Attendance attendance);
+        Task<Attendance> GetByIdAsynAsNoTracking(int id);
+        Task InsertListAsync(List<Attendance> list);
     }
 }
