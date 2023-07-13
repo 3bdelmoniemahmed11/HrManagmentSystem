@@ -18,6 +18,7 @@ namespace HrManagment.DAL.Repositories
         Task Delete(int id);
         Task SaveAsync();
         Task InsertListAsync(List<T> list);
+        public T GetByIdAsNoTracking(int id);
 
 
     }

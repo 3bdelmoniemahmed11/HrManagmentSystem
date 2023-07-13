@@ -39,6 +39,7 @@ namespace HrManagment.DAL.Repositories
         public async Task InsertAsync(T entity)
         {
             await table.AddAsync(entity);
+
         }
 
         public async Task SaveAsync()
@@ -90,6 +91,14 @@ namespace HrManagment.DAL.Repositories
                 hrMangmentContext.Entry(entity).State = EntityState.Detached;
             }
             return resultList;
+        }
+        public T GetByIdAsNoTracking(int id)
+        {
+            var entity =  table.Find(id);
+            if (entity != null)
+                hrMangmentContext.Entry(entity).State = EntityState.Detached;
+
+            return entity;
         }
 
 

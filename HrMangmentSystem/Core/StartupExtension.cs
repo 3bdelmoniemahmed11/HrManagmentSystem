@@ -1,5 +1,7 @@
 ﻿using HrManagment.BLL.Services.AnnualVacationServices;
 using HrManagment.BLL.Services.AttendanceService;
+using HrManagment.BLL.Services.DepartmentServices;
+using HrManagment.BLL.Services.EmployeeContrActDataServices;
 using HrManagment.BLL.Services.EmployeeSalaryReport;
 using HrManagment.BLL.Services.EmployeeServices;
 using HrManagment.BLL.Services.GeneralSettingServices;
@@ -24,6 +26,8 @@ namespace HrManagmentSystem.Core
             RegisterWeeklyVacation(services);
             RegisterAnnualVacation(services);
             RegisterGeneralSetting(services);
+            RegisterDepartment(services);
+            RegisterEmployeeConteractData(services);
         }
 
 
@@ -36,6 +40,8 @@ namespace HrManagmentSystem.Core
             services.AddScoped<IGenericRepository<AnnualVacation>, GenericRepository<AnnualVacation>>();
             services.AddScoped<IGenericRepository<Attendance>, GenericRepository<Attendance>>();
             services.AddScoped<IGenericRepository<GeneralSetting>, GenericRepository<GeneralSetting>>();
+            services.AddScoped<IGenericRepository<Department>, GenericRepository<Department>>();
+            services.AddScoped<IGenericRepository<EmployeeContractDate>, GenericRepository<EmployeeContractDate>>();
 
 
         }
@@ -69,6 +75,15 @@ namespace HrManagmentSystem.Core
         {
             services.AddScoped<IGeneralSettingsService, GeneralSettingsService>();
         }
+        public static void RegisterEmployeeConteractData(IServiceCollection services)
+        {
+            services.AddScoped<IEmployeeContrActDataService, EmployeeContrActDataService>();
+        }
+        public static void RegisterDepartment(IServiceCollection services)
+        {
+            services.AddScoped<IDepartmentService, DepartmentService>();
+        }
+
 
     }
 }
