@@ -1,4 +1,5 @@
 ﻿using HrManagment.BLL.Services.EmployeeSalaryReport;
+using HrManagment.BLL.Services.EmployeeServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,34 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
     public class EmployeeSalaryReportController : ControllerBase
     {
         private readonly IEmployeeSalaryReportService _employeeSalaryReportService;
-        public EmployeeSalaryReportController(IEmployeeSalaryReportService employeeSalaryReportService)
+        private readonly IEmployeeService _employeeService;
+
+        public EmployeeSalaryReportController(IEmployeeSalaryReportService employeeSalaryReportService , IEmployeeService employeeService)
         {
             _employeeSalaryReportService = employeeSalaryReportService;
+            _employeeService = employeeService;
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> getOffDays(int id)
+        //{
+        //    var res = await _employeeSalaryReportService.CalcOffDays(id);
+        //    return Ok(res);
+        //}
+
+
         [HttpGet]
-        public async Task<IActionResult> getOffDays(int id ) 
+        public async Task<IActionResult> GetAllOldSalaries()
         {
-            var res = await _employeeSalaryReportService.CalcOffDays(id);
+            var res = await _employeeSalaryReportService.GetAll();
             return Ok(res);
         }
 
-      
+        [HttpPost]
+        public async Task<IActionResult> CalacAllEmpSalaries()
+        {
+            await _employeeSalaryReportService.CalcSalariesForAllEmps();
+            return Ok("added successfuly");
+        }
     }
 }

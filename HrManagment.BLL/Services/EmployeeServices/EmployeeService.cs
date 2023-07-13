@@ -18,12 +18,17 @@ namespace HrManagment.BLL.Services.EmployeeServices
         }
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            return await _EmployeeRepository.GetAllAsync();
+            return await _EmployeeRepository.GetFilteredAsync(e => e.IsDeleted == false);
         }
        
         public async Task<Employee> GetByIdAsync(int EmployeeId)
         {
            return await _EmployeeRepository.GetByIdAsync(EmployeeId);
+        }
+
+        public async Task<IEnumerable<Employee>> GetAllEmpsIncludingDeptAsync()
+        {
+            return await _EmployeeRepository.GetFilteredIncluded(e => e.IsDeleted == false, "Department");
         }
     }
 }

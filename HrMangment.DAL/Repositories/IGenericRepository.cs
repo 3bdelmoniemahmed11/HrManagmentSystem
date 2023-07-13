@@ -9,13 +9,16 @@ namespace HrManagment.DAL.Repositories
     public interface IGenericRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> predicate);
-        Task<IQueryable<T>>GetAllAsync();
+        Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath);
+        Task<IEnumerable<T>>GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task InsertAsync(T entity);  
-        void Update(T entity);  
-        void Delete(int id);
+        Task<T> GetByIdAsynAsNoTracking(int id);
+        Task InsertAsync(T entity);
+        Task Update(T entity);  
+        Task Delete(int id);
         Task SaveAsync();
+        Task InsertListAsync(List<T> list);
 
-        
+
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HrManagment.DAL.Models
@@ -41,8 +42,10 @@ namespace HrManagment.DAL.Models
         public int DeptId { get; set; } 
         public Department Department { get; set; }
 
-       public  virtual List<Attendance> Attendances { get; set; }= new List<Attendance>();
-       public virtual List<EmployeeContractDate> ContractsDates { get; set; } = new List<EmployeeContractDate>();
-       public virtual List<OldSalary>   OldSalarys { get; set;} = new List<OldSalary>();    
+        public virtual List<Attendance> Attendances { get; set; } = new List<Attendance>();
+
+        public virtual List<EmployeeContractDate> ContractsDates { get; set; } = new List<EmployeeContractDate>();
+
+        public virtual List<OldSalary>   OldSalarys { get; set;} = new List<OldSalary>();    
     }
 }

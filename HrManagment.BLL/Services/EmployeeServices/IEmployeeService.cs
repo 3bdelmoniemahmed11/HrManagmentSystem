@@ -11,6 +11,7 @@ namespace HrManagment.BLL.Services.EmployeeServices
     public interface IEmployeeService
     {
         Task<IEnumerable<Employee>> GetAllAsync();
-        Task<Employee> GetByIdAsync(int EmployeeId); 
+        Task<Employee> GetByIdAsync(int EmployeeId);
+        Task<IEnumerable<Employee>> GetAllEmpsIncludingDeptAsync();
     }
 }

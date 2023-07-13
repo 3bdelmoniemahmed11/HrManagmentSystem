@@ -13,13 +13,15 @@ namespace HrManagment.DAL.Models
     {
         public int Id { get; set; } 
         public TimeSpan AttendanceTime { get; set; }
+
         [TimeSpanComparison("AttendanceTime")]
         public TimeSpan ?DepartureTime { get; set; }
-        public DateTime Date { get; set; }  
-        public bool ?IsDeleted { get; set; }
+        
+        public DateTime Date { get; set; }
+        public bool? IsDeleted { get; set; } = false;
 
         [ForeignKey("Employee")]
         public int EmpId { get; set; }  
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
     }
 }
