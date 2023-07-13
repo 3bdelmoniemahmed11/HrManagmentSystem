@@ -17,6 +17,7 @@ import { ShowusersComponent } from './Component/showusers/showusers.component';
 import { PrintFormComponent } from './Component/print-form/print-form.component';
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
+import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-edit-attendance.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,11 +36,12 @@ const routes: Routes = [
   { path: 'showUsers', component: ShowusersComponent },
   { path: 'Print', component: PrintFormComponent },
   { path: 'permission', component: PermissionComponent },
-//alla
+  //alla
   { path: 'allEmp', component: AllemployeesComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'allEmp/:id', component: ProfileComponent },
   { path: 'newemployee/:id/edit', component: NewemployeeComponent },
+  { path: 'add/:id', component: AddEditAttendanceComponent },
 ];
 
 @NgModule({

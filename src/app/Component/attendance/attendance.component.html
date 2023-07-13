@@ -5,40 +5,50 @@
       <div class="card-body">
         <h4 class="card-title">Attendance </h4>
 
-        <div class="row pt-2 justify-content-between">
+        <form class="row pt-2 justify-content-between form" [formGroup]="searchByEmpOrDeptNameFormgroup">
           <div class="col-lg-5 col-md-12 d-flex justify-content-center ">
             <label for="search" class="pt-3 mr-4">Search</label>
             <input type="text" class="form-control rounded-pill" name="search" id="search"
-              placeholder="Department/Employee name">
+              placeholder="Department/Employee name" (blur)="searchByEmpOrDeptName()" formControlName="searchInput">
           </div>
 
           <div class="col-lg-2 col-md-12 ml-5 pl-5">
-            <a><button class="btn btn-primary mb-3 m-2"><i class="fa-solid fa-plus"></i></button></a>
+            <a class="btn btn-primary mb-3 m-2" [routerLink]="['/add/0']"> <i class="fa-solid fa-plus"> </i> </a>
           </div>
-        </div>
+        </form>
 
 
         <div class="row">
           <div class="col-lg-5 col-md-12 form-group d-flex justify-content-start">
             <h5 class="pt-3 mr-4">Upload</h5>
-            <label for="excelFileInput" class="mr-5 pt-2"><img src="../../../assets/Images/xls.png" alt=""
-                style="width: 30px;"></label>
-                <input type="file" class="form-control-md" id="excelFileInput" style="display:none" />
+            <label for="excelFileInput" class="mr-5 pt-2"><img src="../../../assets/Images/xls.png"style="width: 30px;"></label>
+            <input type="file" class="form-control-md" id="excelFileInput" style="display:none" 
+            #fileInput (change)="onFileSelected($event)" />
 
 
           </div>
         </div>
 
-        <form class="form-inline mb-3 mt-3 ml-sm-3">
+        <form class="form-inline mb-3 mt-3 ml-sm-3" [formGroup]="searchFormGroup">
           <div class="form-group ">
-            <label for="from" class="mr-2">FROM:</label>
-            <input type="date" class="form-control rounded-pill" id="from" name="from">
+            <label for="startDate" class="mr-2">FROM:</label>
+            <input type="date" class="form-control rounded-pill" id="startDate" name="from" formControlName="startDateControl" >
+            <ng-container *ngIf="getStartDate.touched">
+              <span id="startDate" class="text-danger ml-2" *ngIf="getStartDate.hasError('required')"> Please select start date </span>
+                <span *ngIf="searchFormGroup.hasError('dateRange')" class="text-danger ml-2">Start Date should be before End Date</span>
+            </ng-container>
+         
           </div>
           <div class="form-group mx-5">
-            <label for="from" class="mr-2">TO:</label>
-            <input type="date" class="form-control rounded-pill" id="from" name="from">
+            <label for="endDate" class="mr-2">TO:</label>
+            <input type="date" class="form-control rounded-pill" id="endDate" name="to" formControlName="endDateControl">
+            <ng-container *ngIf="getStartDate.touched">
+              <span id="startDate" class="text-danger ml-2" *ngIf="getStartDate.hasError('required')"> Please select start date </span>
+            </ng-container>
           </div>
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary" (click)="SearchByDays()">Search</button>
+          <button type="submit" class="ml-3 btn btn-primary" (click)="showAll()">View All</button>
+
         </form>
 
         <div class="row mt-5">
@@ -46,25 +56,23 @@
             <table class="table expandable-table dataTable no-footer w-100" role="grid">
               <thead>
                 <tr>
-                  <th>NO.</th>
                   <th>Department</th>
                   <th>Employee Name</th>
                   <th>Date</th>
                   <th>Attendance Time</th>
-                  <th>check Out Time</th>
+                  <th>Departure Time</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="tbody">
-                <tr>
-                  <td>1</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
+              <tbody id="tableBody">
+                <tr *ngFor="let att of filteredEmpAtts;let i = index;">
+                  <td>{{att.deptName}}</td>
+                  <td>{{att.empName}} </td>
+                  <td>{{att.date | date:"MM/dd/yyyy" }}</td>
+                  <td>{{att.attendanceTime}}</td>
+                  <td>{{att.departureTime}}</td>
 
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink"
+                  <td><a  [routerLink]="['/add',att.id]" class="text-success mr-3 editlink"
                       id="edit">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
                         class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -72,34 +80,7 @@
                           d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
                       </svg>
                     </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>she</td>
-                  <td>Female</td>
-                  <td>12/3/2004</td>
-                  <td>5000</td>
-                  <td>11 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink"
-                      id="edit">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
+                    <a (click)="Delete(att.id)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
                         class="bi bi-trash3-fill" viewBox="0 0 16 16">
                         <path
@@ -109,242 +90,34 @@
 
                   </td>
                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=2" class="text-success mr-3 editlink"
-                      id="edit">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-
-                <tr>
-                  <td>4</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=4" class="text-success mr-3 editlink"
-                      id="edit">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink"
-                      id="edit">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink"
-                      id="edit">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=4" class="text-success mr-3 editlink edit"
-                      onclick="edit(event)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink edit"
-                      onclick="edit(event)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td>Ahmed</td>
-                  <td> male </td>
-                  <td>12/1/2003</td>
-                  <td>4000</td>
-                  <td>10 AM</td>
-
-                  <td><a href="https://jsonplaceholder.typicode.com/users?id=1" class="text-success mr-3 editlink edit"
-                      onclick="edit(event)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=" rgb(94, 94, 233)"
-                        class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path
-                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                      </svg>
-                    </a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this?')">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                      </svg>
-                    </a>
-
-                  </td>
-
-                </tr>
-
-
-
-
+                <ng-container *ngIf="filteredEmpAtts.length === 0">
+                  <tr>
+                    <td colspan="6">
+                      <div  class="text-danger d-flex justify-content-center " style="font-size: 1.5rem;"> please enter vaild employee or department name </div>
+                    </td>
+                  </tr>
+                </ng-container>
 
               </tbody>
             </table>
 
           </div>
         </div>
+        
+      <div class="row justify-content-center mt-3 d-flex" >
 
-
-        <div class="row justify-content-center mt-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac"
-            class="page-item bi bi-arrow-left-circle-fill mx-3" viewBox="0 0 16 16" onclick="previousPage()">
-            <path
-              d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-          </svg>
-          <ul class="pagination" id="pagination">
-
-          </ul>
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#4b49ac"
-            class="page-item bi bi-arrow-right-circle-fill mx-3" viewBox="0 0 16 16" onclick="nextPage()">
-            <path
-              d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-          </svg>
-        </div>
-
-
-        <div id="confirmedit" style="width: 250px;height: 120px;position: absolute; top: 50%;left: 30%;
-            display: none; background-color: #bbbbbb; color: whitesmoke;border: 1px solid black ;">
-          <div class="row d-flex flex-wrap justify-content-center align-items-center">
-            <div class="m-3">
-              <p style="font-size: 1.3em;">Are You Sure ?</p>
-            </div>
-            <div class="">
-              <Button class="btn btn-primary " id="ok">Ok</Button>
-              <button class="btn btn-danger" id="cancel">Cancel </button>
-            </div>
-          </div>
-        </div>
-
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link"  (click)="goToPage(currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of getTotalPagesArray()" [class.active]="currentPage === page">
+          <a class="page-link"  (click)="goToPage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link"  (click)="goToPage(currentPage + 1)">Next</a>
+        </li>
+      </ul>
+      </div>
 
       </div>
     </div>

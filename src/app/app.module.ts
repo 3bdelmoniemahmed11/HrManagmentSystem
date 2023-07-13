@@ -25,6 +25,7 @@ import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-edit-attendance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PrintFormComponent,
     LoginComponent,
     PermissionComponent,
+    AddEditAttendanceComponent
   ],
   imports: [
     BrowserModule,
