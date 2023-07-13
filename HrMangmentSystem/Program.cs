@@ -3,6 +3,9 @@ using HrManagmentSystem.Core;
 using Microsoft.EntityFrameworkCore;
 using HrManagment.DAL.Helpers;
 
+using System.Text.Json.Serialization;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,6 +26,14 @@ builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
                 {
                     policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 }));
+
+builder.Services.AddControllers()
+       .AddJsonOptions(options =>
+       {
+           options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+       });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

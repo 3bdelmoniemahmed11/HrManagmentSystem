@@ -39,6 +39,7 @@ namespace HrManagment.DAL.Repositories
         public async Task InsertAsync(T entity)
         {
             await table.AddAsync(entity);
+
         }
 
         public async Task SaveAsync()
@@ -76,6 +77,29 @@ namespace HrManagment.DAL.Repositories
         public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
         {
             var resultList = table.Include(propPath).Where(condition).ToList();
+
+        public async Task<IEnumerable<T>> GetFilteredAsync(Func<T, bool> condition)
+        {
+            return await Task.FromResult(table.Where(condition));
+        }
+
+        //public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        //{
+        //    return await Task.FromResult(table.Include(propPath).Where(condition));
+        //}
+
+
+
+        public async Task InsertListAsync(List<T> list)
+        {
+            await table.AddRangeAsync(list);
+        }
+
+
+
+        public async Task<IEnumerable<T>> GetFilteredIncluded(Func<T, bool> condition, string propPath)
+        {
+            var resultList = table.Include(propPath).Where(condition).ToList();
             table.Local.Clear();
             foreach (var entity in resultList)
             {
@@ -83,6 +107,18 @@ namespace HrManagment.DAL.Repositories
             }
             return resultList;
         }
+        public async Task<IEnumerable<T>> GetIncluded( string propPath)
+        {
+            var resultList = table.Include(propPath).ToList();
+            table.Local.Clear();
+            foreach (var entity in resultList)
+            {
+                hrMangmentContext.Entry(entity).State = EntityState.Detached;
+            }
+            return resultList;
+
+        }
+    
 
         public async Task<T> GetByIdAsynAsNoTracking(int id)
         {

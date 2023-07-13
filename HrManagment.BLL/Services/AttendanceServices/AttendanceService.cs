@@ -54,6 +54,7 @@ namespace HrManagment.BLL.Services.AttendanceService
             await _attendanceRepository.SaveAsync();
         }
 
+
         public async Task<Attendance> GetByIdAsync(int id)
         {
            return await _attendanceRepository.GetByIdAsync(id);
@@ -76,5 +77,6 @@ namespace HrManagment.BLL.Services.AttendanceService
             await _attendanceRepository.InsertListAsync(list);
             await _attendanceRepository.SaveAsync();
         }
+
     }
 }

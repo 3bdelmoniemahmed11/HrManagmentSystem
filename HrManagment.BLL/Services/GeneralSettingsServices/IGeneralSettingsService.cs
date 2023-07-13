@@ -1,14 +1,14 @@
 ﻿using HrManagment.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HrManagment.BLL.Services.GeneralSettingsServices
+namespace HrManagment.BLL.Services.GeneralSettingServices
 {
     public interface IGeneralSettingsService
     {
+        Task<IEnumerable<GeneralSetting>> GetAll();
+        Task<GeneralSetting> GetLastSetting();
+        Task Insert(GeneralSetting choices);
+        Task Update(GeneralSetting choices);
         Task<GeneralSetting> GetDeducation_Addation();
+
     }
 }

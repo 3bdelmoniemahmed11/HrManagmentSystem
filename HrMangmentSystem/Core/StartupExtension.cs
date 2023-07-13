@@ -1,8 +1,10 @@
 ﻿using HrManagment.BLL.Services.AnnualVacationServices;
 using HrManagment.BLL.Services.AttendanceService;
+using HrManagment.BLL.Services.DepartmentServices;
+using HrManagment.BLL.Services.EmployeeContrActDataServices;
 using HrManagment.BLL.Services.EmployeeSalaryReport;
 using HrManagment.BLL.Services.EmployeeServices;
-using HrManagment.BLL.Services.GeneralSettingsServices;
+using HrManagment.BLL.Services.GeneralSettingServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
@@ -23,7 +25,11 @@ namespace HrManagmentSystem.Core
             RegisterSalaryClickLog(services);
             RegisterWeeklyVacation(services);
             RegisterAnnualVacation(services);
-            RegisterGeneralSettings(services);
+
+            RegisterGeneralSetting(services);
+            RegisterDepartment(services);
+            RegisterEmployeeConteractData(services);
+
         }
 
 
@@ -36,6 +42,8 @@ namespace HrManagmentSystem.Core
             services.AddScoped<IGenericRepository<AnnualVacation>, GenericRepository<AnnualVacation>>();
             services.AddScoped<IGenericRepository<Attendance>, GenericRepository<Attendance>>();
             services.AddScoped<IGenericRepository<GeneralSetting>, GenericRepository<GeneralSetting>>();
+            services.AddScoped<IGenericRepository<Department>, GenericRepository<Department>>();
+            services.AddScoped<IGenericRepository<EmployeeContractDate>, GenericRepository<EmployeeContractDate>>();
 
 
         }
@@ -65,10 +73,19 @@ namespace HrManagmentSystem.Core
         {
             services.AddScoped<IAnnualVacationService, AnnualVacationService>();
         }
-        public static void RegisterGeneralSettings(IServiceCollection services)
+        public static void RegisterGeneralSetting(IServiceCollection services)
         {
             services.AddScoped<IGeneralSettingsService, GeneralSettingsService>();
         }
+        public static void RegisterEmployeeConteractData(IServiceCollection services)
+        {
+            services.AddScoped<IEmployeeContrActDataService, EmployeeContrActDataService>();
+        }
+        public static void RegisterDepartment(IServiceCollection services)
+        {
+            services.AddScoped<IDepartmentService, DepartmentService>();
+        }
+
 
     }
 }

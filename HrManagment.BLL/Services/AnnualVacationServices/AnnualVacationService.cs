@@ -16,6 +16,19 @@ namespace HrManagment.BLL.Services.AnnualVacationServices
         {
             _annualVacationRepository = annualVacationRepository;
         }
+
+        public async Task<IEnumerable<AnnualVacation>> GetAll()
+        {
+            var days = await  _annualVacationRepository.GetAllAsync();
+            return days.Where(d => d.EndDate == null);
+        }
+
+        public async Task insert(AnnualVacation vacation)
+        {
+            _annualVacationRepository.InsertAsync(vacation);
+            await _annualVacationRepository.SaveAsync();
+        }
+
         public async Task<List<AnnualVacation>> GetAnnualVacationsByPeriod(DateTime startDate, DateTime endDate)
         {
             var annualVacations = await _annualVacationRepository
@@ -23,6 +36,10 @@ namespace HrManagment.BLL.Services.AnnualVacationServices
             return  annualVacations.ToList();
         }
 
-
+       public  async Task update(AnnualVacation vacation)
+        {
+            _annualVacationRepository.Update(vacation);
+            await _annualVacationRepository .SaveAsync();
+        }
     }
 }

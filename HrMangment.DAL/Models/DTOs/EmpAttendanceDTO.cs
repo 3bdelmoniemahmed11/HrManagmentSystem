@@ -20,5 +20,6 @@ namespace HrManagment.DAL.Models.DTOs
 
         public string? SSN { get; set; }
 
+
     }
 }

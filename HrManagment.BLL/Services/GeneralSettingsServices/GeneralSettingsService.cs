@@ -6,19 +6,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrManagment.BLL.Services.GeneralSettingsServices
+namespace HrManagment.BLL.Services.GeneralSettingServices
 {
     public class GeneralSettingsService : IGeneralSettingsService
     {
-        private readonly IGenericRepository<GeneralSetting> _genericRepository ;
-        public GeneralSettingsService(IGenericRepository<GeneralSetting> genericRepository)
+        public readonly IGenericRepository<GeneralSetting> _generialSettingsRepository;
+        public GeneralSettingsService(IGenericRepository<GeneralSetting> generialSettingsRepository)
         {
-            _genericRepository= genericRepository;
+            _generialSettingsRepository = generialSettingsRepository;
+        }
+        public async Task<IEnumerable<GeneralSetting>> GetAll()
+        {
+            return await _generialSettingsRepository.GetAllAsync();
+        }
+
+        public async Task<GeneralSetting> GetLastSetting()
+        {
+            var services = await _generialSettingsRepository.GetAllAsync();
+            return (GeneralSetting)services.FirstOrDefault(g => g.EndDate == null);
+        }
+
+        public async Task Insert(GeneralSetting choices)
+        {
+            _generialSettingsRepository.InsertAsync(choices);
+            await _generialSettingsRepository.SaveAsync();
+        }
+
+        public async Task Update(GeneralSetting choices)
+        {
+            _generialSettingsRepository.Update(choices);
+            await _generialSettingsRepository.SaveAsync();
         }
         public async Task<GeneralSetting> GetDeducation_Addation()
         {
-            var generalSettings= await  _genericRepository.GetFilteredAsync(gs => gs.EndDate == null);
-            return   generalSettings.FirstOrDefault();
+            var generalSettings = await _generialSettingsRepository.GetFilteredAsync(gs => gs.EndDate == null);
+            return generalSettings.FirstOrDefault();
         }
     }
 }

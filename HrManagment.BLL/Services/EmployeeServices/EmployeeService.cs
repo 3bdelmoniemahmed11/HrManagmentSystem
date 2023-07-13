@@ -30,5 +30,40 @@ namespace HrManagment.BLL.Services.EmployeeServices
         {
             return await _EmployeeRepository.GetFilteredIncluded(e => e.IsDeleted == false, "Department");
         }
+
+        public async Task UpdateAsync(Employee employee)
+        {
+            _EmployeeRepository.Update(employee);
+            await _EmployeeRepository.SaveAsync();
+        }
+        public async Task InsertAsync(Employee employee)
+        {
+            _EmployeeRepository.InsertAsync(employee);
+            await _EmployeeRepository.SaveAsync();
+
+
+        }
+        public async Task DeleteAsync(int empId)
+        {
+            var employee = await _EmployeeRepository.GetByIdAsync(empId);
+            employee.IsDeleted = true;
+            await _EmployeeRepository.SaveAsync();
+        }
+        public async Task<IEnumerable<Employee>> GetEmployee_Deparmtnet()
+        {
+            var res = await _EmployeeRepository.GetIncluded("Department");
+
+
+            return res;
+        }
+
+        public async Task<int> GetEmployeeByPhone(string empPhone)
+        {
+            var res = await _EmployeeRepository.GetFilteredAsync(emp => emp.Phone == empPhone);
+
+
+            return  res.FirstOrDefault().Id;
+        }
+
     }
 }

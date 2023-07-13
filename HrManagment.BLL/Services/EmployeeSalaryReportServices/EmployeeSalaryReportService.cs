@@ -1,7 +1,7 @@
 ﻿using HrManagment.BLL.Services.AnnualVacationServices;
 using HrManagment.BLL.Services.AttendanceService;
 using HrManagment.BLL.Services.EmployeeServices;
-using HrManagment.BLL.Services.GeneralSettingsServices;
+using HrManagment.BLL.Services.GeneralSettingServices;
 using HrManagment.BLL.Services.SalaryClickLogServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
@@ -205,7 +205,9 @@ namespace HrManagment.BLL.Services.EmployeeSalaryReport
 
         public async Task<IEnumerable<OldSalary>> GetAll() 
         {
-            var res = await  _oldSalaryRepository.GetAllAsync();
+
+            var res = await _oldSalaryRepository.GetIncluded("Employee");
+         
             return  res;
         }
     }

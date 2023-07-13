@@ -26,12 +26,7 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
         //}
 
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllOldSalaries()
-        {
-            var res = await _employeeSalaryReportService.GetAll();
-            return Ok(res);
-        }
+ 
 
         [HttpPost]
         public async Task<IActionResult> CalacAllEmpSalaries()
@@ -39,5 +34,16 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
             await _employeeSalaryReportService.CalcSalariesForAllEmps();
             return Ok("added successfuly");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllOldSalaries()
+        {
+            await _employeeSalaryReportService.CalcSalariesForAllEmps();
+            var res = await _employeeSalaryReportService.GetAll();
+            
+            return Ok(res);
+        }
+
+
     }
 }

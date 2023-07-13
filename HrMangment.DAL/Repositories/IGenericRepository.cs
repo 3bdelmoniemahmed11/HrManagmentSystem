@@ -18,7 +18,8 @@ namespace HrManagment.DAL.Repositories
         Task Delete(int id);
         Task SaveAsync();
         Task InsertListAsync(List<T> list);
-
+        Task<IEnumerable<T>> GetIncluded(string propPath);
+   
 
     }
 }

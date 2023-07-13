@@ -4,7 +4,9 @@ using HrManagment.DAL.Models.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HrManagment.DAL.Models;
+
 using HrManagment.BLL.Services.EmployeeServices;
+
 
 namespace HrManagmentSystem.Controllers.Attendance
 {
@@ -20,6 +22,7 @@ namespace HrManagmentSystem.Controllers.Attendance
             _attendanceService = attendanceService;
             _imapper = imapper;
             _employeeService = employeeService;
+
         }
 
         [HttpGet]
@@ -97,5 +100,6 @@ namespace HrManagmentSystem.Controllers.Attendance
             return Ok(attendance);
 
         }
+
     }
 }

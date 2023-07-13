@@ -18,7 +18,7 @@ namespace HrManagment.BLL.Services.VacationServices
             _weeklyVacationRepository = weeklyVacationRepository;
         }
 
-
+      
         public async Task<int> GetNumberOfWeeklyVacationsByPeriod(DateTime startDate, DateTime endDate)
         {
 
@@ -41,6 +41,28 @@ namespace HrManagment.BLL.Services.VacationServices
             return NumberOfWeeklyDays;
         }
 
+        public async Task<IEnumerable<WeeklyVacation>> GetWeekDays()
+        {
+            var days = await _weeklyVacationRepository.GetAllAsync();
+            return days.Where(d=>d.EndDate == null);
+        }
 
+        public async Task InsertWeekDays(IEnumerable<WeeklyVacation> weeklyVacations)
+        {
+            foreach (var item in weeklyVacations)
+            {
+                _weeklyVacationRepository.InsertAsync(item);
+            }
+       await   _weeklyVacationRepository.SaveAsync();
+        }
+
+        public async Task UpdateWeekDays(IEnumerable<WeeklyVacation> weeklyVacations)
+        {
+            foreach (var item in weeklyVacations)
+            {
+                _weeklyVacationRepository.Update(item);
+            }
+         await    _weeklyVacationRepository.SaveAsync();
+        }
     }
 }
