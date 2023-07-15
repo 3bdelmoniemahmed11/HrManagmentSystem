@@ -15,21 +15,21 @@ namespace HrManagment.BLL.Services.DepartmentServices
         {
             _Departmentrepository = Departmentrepository;
         }
-        public async Task<IEnumerable<Department>> Get()
+        public async Task<IEnumerable<Department>> GetAsync()
         {
             var departments = await _Departmentrepository.GetAllAsync();
             return departments.Where(d => d.IsDeleted == false);
         }
 
-        public async Task insert(Department department)
+        public async Task insertAsync(Department department)
         {
-            _Departmentrepository.InsertAsync(department);
+            await _Departmentrepository.InsertAsync(department);
             await _Departmentrepository.SaveAsync();
         }
 
-        public async Task update(Department department)
+        public async Task updateAsync(Department department)
         {
-            _Departmentrepository.Update(department);
+            await _Departmentrepository.Update(department);
             await _Departmentrepository.SaveAsync();
         }
         public async Task<string> GetDeptName(int departmentId)
@@ -37,6 +37,15 @@ namespace HrManagment.BLL.Services.DepartmentServices
          
            var department= await _Departmentrepository.GetByIdAsynAsNoTracking(departmentId);
             return department.Name; 
+        }
+
+        public Task DeleteAsync(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<Department> GetByIdAsync(int departmentId)
+        {
+            return await _Departmentrepository.GetByIdAsync(departmentId);
         }
     }
 }

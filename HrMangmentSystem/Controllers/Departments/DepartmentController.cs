@@ -1,6 +1,7 @@
 ﻿using HrManagment.BLL.Services.DepartmentServices;
 using HrManagment.BLL.Services.VacationServices;
 using HrManagment.DAL.Models;
+using HrManagmentSystem.Controllers.EmployeesPersonalData.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,9 @@ namespace HrManagmentSystem.Controllers.Departments
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAsync()
         {
-            var result = await departmentService.Get();
+            var result = await departmentService.GetAsync();
             return Ok(result);
         }
 
@@ -30,21 +31,27 @@ namespace HrManagmentSystem.Controllers.Departments
             {
                 return BadRequest(ModelState);
             }
-            await departmentService.insert(department);
+            await departmentService.insertAsync(department);
             return Ok(department);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Department department)
+        public async Task<IActionResult> PutAsync([FromBody] Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await departmentService.update(department);
+            await departmentService.updateAsync(department);
             return Ok(department);
-
         }
+        [HttpGet("{departmentId}")]
+        public async Task<IActionResult> GetDepartmentById(int departmentId)
+        {
+            var department = await departmentService.GetByIdAsync(departmentId);        
+            return Ok(department);
+        }
+
 
     }
 }
