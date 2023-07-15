@@ -18,7 +18,7 @@ export class DepartmentService {
   getDepartmentById(departId:any){
     return this.http.get(`${this.baseURL}/${departId}`)
   }
-  addDepartment(dept:any){
+  addDepartment(dept: any) {
     return this.http.post(this.baseURL,dept)
   }
   deleteDepartment(departId:any)

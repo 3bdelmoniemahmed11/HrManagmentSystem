@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
 
-  { path: 'addDepartment', component: AddDeptComponent },
+  { path: 'addDepartment/:id/edit', component: AddDeptComponent },
   { path: 'addGroup', component: AddGroupComponent },
   { path: 'salaryrepot', component: SalryreportComponent },
   { path: 'adduser', component: AdduserComponent },
