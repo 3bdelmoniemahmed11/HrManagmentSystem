@@ -31,7 +31,7 @@
                 <input type="time" class="form-control" id="departureTime"  formControlName="DepartureTime" >
                 <ng-container *ngIf="getDepartureTime.touched">
                   <div id="departureTime" class="text-danger mt-2" *ngIf="getDepartureTime.hasError('required')">  Please Enter Departure Time  </div>
-                  <div *ngIf="departureTimeValidator()" class="text-danger mt-2">Departure time must be greater than attendance time</div>
+                  <div *ngIf="AttendanceForm.hasError('timeRange')" class="text-danger mt-2">Departure time must be greater than attendance time</div>
                 </ng-container>
               </div>
 
@@ -45,7 +45,7 @@
               </div>
           
               <button type="submit" class="btn btn-primary mr-2" (click)="Add()" >{{ attId == 0 ? "Add Atttendence" : "Save Changes"}}</button>
-        <button class="btn btn-light"><a  style=" text-decoration: none;" [routerLink]="['/home']">{{ attId == 0 ? "Back" : "Cancel"}}</a></button>
+        <button class="btn btn-light"><a  style=" text-decoration: none;" [routerLink]="['/attendance']">{{ attId == 0 ? "Back" : "Cancel"}}</a></button>
               
             </form>
           </div>

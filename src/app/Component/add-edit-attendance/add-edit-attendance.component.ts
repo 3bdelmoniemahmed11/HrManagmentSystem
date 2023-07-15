@@ -3,6 +3,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -79,11 +80,13 @@ export class AddEditAttendanceComponent implements OnInit {
     AttendanceDate: new FormControl('', [Validators.required]),
   });
 
+
   departureTimeValidator(): boolean {
     const attendanceTime = this.getAtttendanceTime.value;
     const departureTime = this.getDepartureTime.value;
 
     if (attendanceTime && departureTime && attendanceTime >= departureTime) {
+      this.AttendanceForm.setErrors({ timeRange: true });
       return true;
     }
 
@@ -106,7 +109,7 @@ export class AddEditAttendanceComponent implements OnInit {
 
   Add() {
     this.AttendanceForm.markAllAsTouched();
-
+    this.departureTimeValidator();
     console.log('add function');
     console.log(this.AttendanceForm);
     if (this.AttendanceForm.valid) {
