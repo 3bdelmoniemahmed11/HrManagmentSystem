@@ -73,7 +73,7 @@ namespace HrManagmentSystem.Controllers.Attendance
             List<HrManagment.DAL.Models.Attendance> attendance = new List<HrManagment.DAL.Models.Attendance> ();
             attendance = _imapper.Map<List<HrManagment.DAL.Models.Attendance>>(attendancesDTO);
             await _attendanceService.InsertListAsync(attendance);
-            return Ok("done");
+            return Ok();
         }
 
 

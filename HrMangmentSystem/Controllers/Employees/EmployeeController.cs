@@ -100,7 +100,7 @@ namespace HrManagmentSystem.Controllers.Employeee
         [HttpPost]
         public async Task<IActionResult> PostNewEmployee([FromBody] EmployeesDataDTO employee)
         {
-            Employee sendemployee = new Employee();
+            HrManagment.DAL.Models.Employee sendemployee = new HrManagment.DAL.Models.Employee();
             EmployeeContractDate hirdate = new EmployeeContractDate();
             sendemployee.Name = employee.Name;
             sendemployee.NetSalary = employee.NetSalary;
@@ -130,7 +130,7 @@ namespace HrManagmentSystem.Controllers.Employeee
         [HttpPut]
         public async Task<IActionResult> EditEmployee([FromBody] EmployeesDataDTO employee)
         {
-            Employee sendemployee = new Employee();
+            HrManagment.DAL.Models.Employee sendemployee = new HrManagment.DAL.Models.Employee();
             EmployeeContractDate hirdate = new EmployeeContractDate();
 
 
