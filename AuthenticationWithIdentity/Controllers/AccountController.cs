@@ -159,7 +159,7 @@ namespace AuthenticationWithIdentity.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult GetAllUsers()
         {
-            return Ok(_context.Users.ToList());
+            return Ok(_context.Users.Include(u=>u.Group).ToList());
         }
 
         [HttpGet("GetAllPages")]
