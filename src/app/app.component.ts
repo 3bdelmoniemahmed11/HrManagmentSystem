@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthenticationService } from './Services/Identity/authentication.service';
+import { GroupService } from './Services/Group/Group.service';
+import { EmployeeService } from './Services/Employee/employee.service';
+import { DepartmentService } from './Services/Department/department.service';
+import { GeneralSettingSService } from './Services/GeneralSetting/GeneralSettings.service';
+import { UserService } from './Services/Identity/User.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +15,13 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   isLoginRoute = false;
-
-  constructor(private router: Router) {
+  groupId:number;
+  pages:string[]=[];
+  results:any;
+  constructor(
+    private router: Router,
+    private auth:AuthenticationService,
+    private groupservice:GroupService) {
     router.events.pipe(
       filter((event: any) => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
@@ -18,5 +29,29 @@ export class AppComponent {
         this.isLoginRoute = event.url === '/login';
       }
     });
+
   }
+
+
+  ngOnInit(): void
+  {
+    this.results='';
+    this.auth.decodedToken();
+    this.groupId = this.auth.getGroupIdFromToken();
+    this.groupservice.getByID(this.groupId).subscribe({
+      next:(result)=>{
+        this.results= result;
+        for (let index = 0; index < this.results.length; index++) {
+          this.pages.push(this.results[index].page.name);
+        }
+      },
+      error:(err)=>{console.log(err);
+      }
+    });
+
+  }
+  isAccess(page_name:string){
+    return this.pages.includes(page_name);
+  }
+
 }

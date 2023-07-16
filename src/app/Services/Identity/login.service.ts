@@ -5,10 +5,12 @@ import { environment } from 'environment/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class SalaryreportService {
-  baseUrl: string = `${environment.apiUrl}/EmployeeSalaryReport`;
+export class LoginService {
+  private baseURL = `${environment.AccountUrl}`;
+
   constructor(private http: HttpClient) {}
-  GenerateReportSalary() {
-    return this.http.get(this.baseUrl);
+
+  login(loginModel: any) {
+    return this.http.post<any>(`${this.baseURL}/login`, loginModel);
   }
 }

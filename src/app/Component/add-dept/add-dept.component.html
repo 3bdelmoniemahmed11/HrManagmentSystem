@@ -4,17 +4,26 @@
           <div class="card">
               <div class="card-body">
                   <p class="card-title">New Department</p>
-                  <div class="row mb-4">
+                  <form [formGroup]="departmentForm"  (ngSubmit)="onSubmit()" class="row mb-4">
                       <div class="col-lg-5 col-md-12 p-3 m-auto">
                           <label for="GroupName">Department Name</label>
                           <input id="GroupName" type="text"
-                              class="form-control rounded border-primary" placeholder="Department name">
+                              class="form-control rounded border-primary" placeholder="Department name" formControlName="name">
+                              <div *ngIf="submitted && departmentForm.controls['name'].errors" class="text-danger">
+                                <div *ngIf="departmentForm.hasError('required', 'name')" class="text-danger">
+                                  *Please enter name.*
+                                </div>
+                                <div *ngIf="departmentForm.hasError('minlength','name')" class="text-danger">
+                                  Name must be at least two characters long.
+                                </div>
+                              </div>
                       </div>
                       <div class="col-md-12 mx-2 d-flex justify-content-center">
-                          <button class="btn btn-primary mr-2">Save</button>
+                          <button type="submit" class="btn btn-primary mr-2">Save</button>
                           <a [routerLink]="['/showDepts']"><button class="btn btn-light">Back</button></a>
                       </div>
-                  </div>
+
+                  </form>
               </div>
           </div>
       </div>

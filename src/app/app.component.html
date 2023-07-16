@@ -39,18 +39,23 @@
       <!--Start right sidebar-->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <ng-container *ngIf="isAccess('Dashboard')">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/home']">
               <i class="fa-solid fa-house fa-lg fa-lg mr-4" style="color: #5858FA;"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+        </ng-container>
+        <ng-container *ngIf="isAccess('Departments')">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/showDepts']">
               <i class="icon-grid fa-solid fa-user-group fa-lg mr-4" style="color: #5858FA;"></i>
               <span class="menu-title">Departments</span>
             </a>
           </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Employees')">
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
               aria-controls="form-elements">
@@ -60,11 +65,12 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/allEmp']">All Employees</a></li>
-                <li class="nav-item"><a class="nav-link" [routerLink]="['/newemployee']">Add Employee</a></li>
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/attendance']">Attendance</a></li>
               </ul>
             </div>
           </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Permissions')">
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#groups" aria-expanded="false">
               <i class="icon-grid fa-solid fa-sliders fa-lg mr-4" style="color: #5858FA;"></i>
@@ -77,6 +83,8 @@
               </ul>
             </div>
           </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Dashboard')">
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#users">
               <i class="icon-grid fa-solid fa-users fa-lg mr-4" style="color: #5858FA;"></i>
@@ -90,6 +98,8 @@
 
             </div>
           </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Settings')">
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#settings">
               <i class="icon-grid fa-solid fa-gears fa-lg mr-4" style="color: #5858FA;"></i>
@@ -102,6 +112,8 @@
               </ul>
             </div>
           </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('SalaryReport')">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/salaryrepot']" >
               <i class="icon-grid fa-solid fa-square-poll-horizontal fa-lg mr-4" style="color: #5858FA;"></i>
@@ -109,6 +121,7 @@
             </a>
 
           </li>
+          </ng-container>
 
         </ul>
       </nav>

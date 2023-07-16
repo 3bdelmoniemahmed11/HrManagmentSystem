@@ -1,35 +1,51 @@
-
 <!--info top-->
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Add User</h4>
-        <form class="forms-sample">
+        <form class="forms-sample" [formGroup]="RegisterForm">
           <div class="form-group">
             <label for="exampleInputUsername1">Username</label>
-            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username"
+              formControlName="userName">
           </div>
+          <ng-container *ngIf="RegisterForm.controls.password.touched ">
+            <div *ngIf="RegisterForm.controls.userName.hasError('required')">UserName is required</div>
+          </ng-container>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"
+              formControlName="email">
           </div>
+          <ng-container *ngIf="RegisterForm.controls.password.touched ">
+            <div *ngIf="RegisterForm.controls.email.hasError('required')">Email is required</div>
+          </ng-container>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+              formControlName="password">
           </div>
+          <ng-container *ngIf="RegisterForm.controls.password.touched ">
+            <div *ngIf="RegisterForm.controls.password.hasError('required')">Password is required</div>
+            <div *ngIf="RegisterForm.controls.password.hasError('minLength')">Password must be at least 6 characters
+              long</div>
+
+          </ng-container>
           <div class="form-group">
             <label for="exampleInputConfirmPassword1">Group Name</label>
-           <select class="col-md-12 form-control">
-            <option value="0">Select Group Name</option>
-           </select>
+            <select class="col-md-12 form-control" formControlName="groupid">
+              <option *ngFor="let option of Groups" [value]="option.id" >{{ option.name }}</option>
+
+            </select>
           </div>
 
-          <button type="submit" class="btn btn-primary mr-2">Add</button>
-          <button class="btn btn-light"><a [routerLink]="['/showUsers']" style=" text-decoration: none;">Cancel</a></button>
+          <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()"
+            [disabled]="!RegisterForm.valid">Add</button>
+          <button class="btn btn-light"><a [routerLink]="['/showUsers']"
+              style=" text-decoration: none;">Cancel</a></button>
         </form>
       </div>
     </div>
   </div>
 </div>
-

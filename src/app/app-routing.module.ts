@@ -17,25 +17,28 @@ import { ShowusersComponent } from './Component/showusers/showusers.component';
 import { PrintFormComponent } from './Component/print-form/print-form.component';
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
+import { AuthGuard } from './guards/auth.guard';
+import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'newemployee', component: NewemployeeComponent },
-  { path: 'addDepartment', component: AddDeptComponent },
-  { path: 'addGroup', component: AddGroupComponent },
-  { path: 'salaryrepot', component: SalryreportComponent },
-  { path: 'adduser', component: AdduserComponent },
-  { path: 'empHoliday', component: EmpholidayesComponent },
-  { path: 'officialvac', component: OfficialvacComponent },
-  { path: 'attendance', component: AttendanceComponent },
-  { path: 'allEmp', component: AllemployeesComponent },
-  { path: 'showDepts', component: ShowdepartsComponent },
-  { path: 'showUsers', component: ShowusersComponent },
-  { path: 'Print', component: PrintFormComponent },
-  { path: 'permission', component: PermissionComponent },
+  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'newemployee', component: NewemployeeComponent,canActivate: [AuthGuard] },
+  { path: 'addDepartment/:id', component: AddDeptComponent,canActivate: [AuthGuard] },
+  { path: 'addGroup', component: AddGroupComponent,canActivate: [AuthGuard] },
+  { path: 'salaryrepot', component: SalryreportComponent,canActivate: [AuthGuard] },
+  { path: 'adduser', component: AdduserComponent,canActivate: [AuthGuard] },
+  { path: 'empHoliday', component: EmpholidayesComponent,canActivate: [AuthGuard] },
+  { path: 'officialvac', component: OfficialvacComponent,canActivate: [AuthGuard] },
+  { path: 'attendance', component: AttendanceComponent,canActivate: [AuthGuard] },
+  { path: 'allEmp', component: AllemployeesComponent,canActivate: [AuthGuard] },
+  { path: 'showDepts', component: ShowdepartsComponent,canActivate: [AuthGuard] },
+  { path: 'showUsers', component: ShowusersComponent,canActivate: [AuthGuard] },
+  { path: 'Print', component: PrintFormComponent,canActivate: [AuthGuard] },
+  { path: 'permission', component: PermissionComponent,canActivate: [AuthGuard] },
+  { path: 'mDept/:id',component:MoveDeptComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

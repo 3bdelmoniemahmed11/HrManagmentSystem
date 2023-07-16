@@ -42,7 +42,7 @@ export class EmpholidayesComponent implements OnInit {
     this.Generalsetting.getLastSetting().subscribe({
       next: (result) => {
         this.Setting = result;
-        this.Setting = this.Setting.result;
+        this.Setting = this.Setting;
 
         if (this.Setting != null) {
           this.settingForm.controls['Extra'].setValue(this.Setting.addationValue);
@@ -56,11 +56,11 @@ export class EmpholidayesComponent implements OnInit {
       next: (days) => {
         this.modelWeekdays=days;
         this.modelWeekdays= this.modelWeekdays;
-        console.log( this.modelWeekdays);
 
         for (let index = 0; index < this.modelWeekdays.length; index++) {
           this.selectedWeekdays.push(this.modelWeekdays[index].dayName);
           this.selectedOld.push(this.modelWeekdays[index].dayName);
+
         }
 
         this.updateSelectedWeekdays();
@@ -88,7 +88,16 @@ export class EmpholidayesComponent implements OnInit {
    this.WeeklyFunction();
    this.UpdateWDays();
    this.AddWDays();
-   if( this.Setting.deductionValue!=this.settingForm.controls['Discount'].value || this.Setting.addationValue!=this.settingForm.controls['Extra'].value){
+   if(this.Setting==null){
+    this.AddNSetting();
+    Swal.fire({
+      icon: 'success',
+      title: 'Data Updated',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+   }
+   else if( this.Setting.deductionValue!=this.settingForm.controls['Discount'].value || this.Setting.addationValue!=this.settingForm.controls['Extra'].value){
     this.UpdateSetting(this.AddNSetting.bind(this)); // Pass AddNSetting function as a callback
     Swal.fire({
       icon: 'success',
@@ -97,14 +106,17 @@ export class EmpholidayesComponent implements OnInit {
       timer: 1500,
     });
  }
-  else if(this.old!=null || this.new!=null ){
+
+   if(this.old!=null || this.new!=null ){
     Swal.fire({
       icon: 'success',
       title: 'Data Updated',
       showConfirmButton: false,
       timer: 1500,
     });
+    //window.location.reload();
   }
+
   }
 
   WeeklyFunction(){
@@ -115,6 +127,7 @@ export class EmpholidayesComponent implements OnInit {
         this.old.push(this.modelWeekdays[index]);
       }
     }
+   console.log(this.selectedOld);
 
     for (let index = 0; index < this.selectedWeekdays.length; index++) {
       if(!this.selectedOld.includes(this.selectedWeekdays[index])){
@@ -185,7 +198,8 @@ if(this.new.length>0){
       next: (res) => {
         console.log(res);
       },
-      error: (e) => { }
+      error: (e) => { console.log(e);
+      }
     });
   }
 }

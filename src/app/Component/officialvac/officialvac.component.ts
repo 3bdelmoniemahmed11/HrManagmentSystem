@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnnualVacationsService } from 'src/app/Services/AnnualVacations/AnnualVacations.service';
+import { GroupService } from 'src/app/Services/Group/Group.service';
+import { AuthenticationService } from 'src/app/Services/Identity/authentication.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,10 +16,35 @@ AnnualVacation:any;
 Status:string="Add";
 AnnualForm: FormGroup;
 submitted:boolean=false;
+groupId:number;
+permisions:any[]=[];
+results:any;
 
-constructor(private annualServices:AnnualVacationsService,private formBuilder:FormBuilder){}
+constructor(private annualServices:AnnualVacationsService,private formBuilder:FormBuilder,private auth:AuthenticationService,
+  private groupservice:GroupService){}
 
 ngOnInit(): void {
+  this.auth.decodedToken();
+    this.groupId = this.auth.getGroupIdFromToken();
+
+
+    this.groupservice.getByID(this.groupId).subscribe({
+      next:(result)=>{
+        this.results= result;
+        console.log(this.results);
+
+        for (let index = 0; index < this.results.length; index++) {
+          if(this.results[index].pageId==3){
+
+          this.permisions.push(this.results[index]);
+          }
+
+        }
+
+      },
+      error:(err)=>{console.log(err);
+      }
+    })
   this.AnnualForm = this.formBuilder.group({
     name: ['', Validators.required],
     vdata: ['', Validators.required],
@@ -133,5 +160,42 @@ ngOnInit(): void {
     this.AnnualForm.controls['vdata'].setValue("");
     this.Status="Add";
     this.submitted=false;
+  }
+  IsADD(){
+    for (let index = 0; index < this.permisions.length; index++) {
+      const element = this.permisions[index];
+      if(element.pageId=5){
+        if(element.pageActionId=2){
+          return true;
+         }
+       }
+
+    }
+    return false;
+
+  }
+  IsEdit(){
+    for (let index = 0; index < this.permisions.length; index++) {
+      const element = this.permisions[index];
+      if(element.pageId==5){
+        if(element.pageActionId==3){
+          return true;
+         }
+       }
+    }
+    return false;
+
+  }
+  IsDelete(){
+    for (let index = 0; index < this.permisions.length; index++) {
+      const element = this.permisions[index];
+      if(element.pageId==5){
+        if(element.pageActionId==4){
+          return true;
+         }
+       }
+    }
+    return false;
+
   }
 }

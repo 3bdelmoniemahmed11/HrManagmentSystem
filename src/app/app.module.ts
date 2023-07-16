@@ -24,6 +24,7 @@ import { PrintFormComponent } from './Component/print-form/print-form.component'
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
 
 @NgModule({
   declarations:[
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     ShowusersComponent,
     PrintFormComponent,
     LoginComponent,
-    PermissionComponent
+    PermissionComponent,
+    MoveDeptComponent
   ],
   imports: [
     BrowserModule,
