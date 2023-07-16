@@ -44,6 +44,14 @@ namespace HrManagmentSystem.Controllers.EmployeeSalaryReport
             return Ok(res);
         }
 
+        [HttpGet("Display")]
+        public async Task<IActionResult> GetAllOld()
+        {
+            var res = await _employeeSalaryReportService.GetAll();
+
+            return Ok(res);
+        }
+
 
     }
 }
