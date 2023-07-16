@@ -96,7 +96,8 @@ export class EmpholidayesComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500,
       });
-    } else if (
+    }
+    else if (
       this.Setting.deductionValue !=
         this.settingForm.controls['Discount'].value ||
       this.Setting.addationValue != this.settingForm.controls['Extra'].value
@@ -110,27 +111,7 @@ export class EmpholidayesComponent implements OnInit {
       });
     }
 
-   this.WeeklyFunction();
-   this.UpdateWDays();
-   this.AddWDays();
-   if(this.Setting==null){
-    this.AddNSetting();
-    Swal.fire({
-      icon: 'success',
-      title: 'Data Updated',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-   }
-   else if( this.Setting.deductionValue!=this.settingForm.controls['Discount'].value || this.Setting.addationValue!=this.settingForm.controls['Extra'].value){
-    this.UpdateSetting(this.AddNSetting.bind(this)); // Pass AddNSetting function as a callback
-    Swal.fire({
-      icon: 'success',
-      title: 'Data Updated',
-      showConfirmButton: false,
-      timer: 1500,
-    });
- }
+
 
    if(this.old!=null || this.new!=null ){
     Swal.fire({
@@ -139,7 +120,7 @@ export class EmpholidayesComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500,
     });
-    //window.location.reload();
+    window.location.reload();
   }
 
   }
@@ -221,7 +202,6 @@ if(this.new.length>0){
 
     this.Generalsetting.AddSetting(newSetting).subscribe({
       next: (res) => {
-        console.log(res);
       },
       error: (e) => { console.log(e);
       }

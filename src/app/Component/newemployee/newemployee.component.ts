@@ -181,6 +181,8 @@ export class NewemployeeComponent implements OnInit {
           this.router.navigate(['/allEmp']);
 
           },
+          error:(error)=>{console.log(error);
+          }
         });
       } else {
         // this.timedata=this.formatDateForInput(this.employeeForm.controls.hirDate);
