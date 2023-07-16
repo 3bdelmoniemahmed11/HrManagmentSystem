@@ -1,20 +1,103 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj": {}
+    "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj": {
+    "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\HrManagment.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
-        "projectName": "HrManagment.DAL",
-        "projectPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
-        "packagesPath": "C:\\Users\\abdel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\obj\\",
+        "projectUniqueName": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\HrManagment.BLL.csproj",
+        "projectName": "HrManagment.BLL",
+        "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\HrManagment.BLL.csproj",
+        "packagesPath": "C:\\Users\\dinaa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\abdel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dinaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj": {
+                "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
+        "projectName": "HrManagment.DAL",
+        "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj",
+        "packagesPath": "C:\\Users\\dinaa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\dinaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +123,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -67,21 +164,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj": {
+    "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj",
+        "projectUniqueName": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj",
         "projectName": "HrManagmentSystem",
-        "projectPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj",
-        "packagesPath": "C:\\Users\\abdel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangmentSystem\\obj\\",
+        "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangmentSystem\\HrManagmentSystem.csproj",
+        "packagesPath": "C:\\Users\\dinaa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangmentSystem\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\abdel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dinaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,15 +190,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj": {
-                "projectPath": "C:\\Users\\abdel\\Desktop\\HrMangmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj"
+              "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\HrManagment.BLL.csproj": {
+                "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrManagment.BLL\\HrManagment.BLL.csproj"
+              },
+              "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj": {
+                "projectPath": "C:\\Users\\dinaa\\Downloads\\GP_ITI\\HrManagmentSystem\\HrManagmentSystem\\HrMangment.DAL\\HrManagment.DAL.csproj"
               }
             }
           }
@@ -112,9 +215,27 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -140,7 +261,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

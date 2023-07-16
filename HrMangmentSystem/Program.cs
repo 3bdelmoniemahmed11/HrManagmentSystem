@@ -44,6 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("NgOrigins");
+
 app.UseAuthorization();
 
 app.MapControllers();

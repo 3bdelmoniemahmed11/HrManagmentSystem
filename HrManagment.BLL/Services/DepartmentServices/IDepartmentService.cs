@@ -7,7 +7,6 @@ namespace HrManagment.BLL.Services.DepartmentServices
         Task<IEnumerable<Department>> GetAsync();
         Task insertAsync(Department department);
         Task updateAsync(Department department);
-         Task DeleteAsync(int  departmentId);
         public  Task<string>GetDeptName(int departmentId);
         public Task<Department> GetByIdAsync(int departmentId);
 

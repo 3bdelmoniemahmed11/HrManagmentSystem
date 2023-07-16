@@ -65,5 +65,22 @@ namespace HrManagment.BLL.Services.EmployeeServices
             return  res.FirstOrDefault().Id;
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployeeByDepartment(int department_id)
+        {
+            var emps = await _EmployeeRepository.GetAllAsync();
+            return emps.Where(e => e.DeptId == department_id);
+        }
+        public async Task updateEmployeeByDepartment(int departmentold, int departmentnew)
+        {
+            var emps = await _EmployeeRepository.GetAllAsync();
+            emps = emps.Where(e => e.DeptId == departmentold);
+            foreach (var item in emps)
+            {
+                item.DeptId = departmentnew;
+                _EmployeeRepository.Update(item);
+            }
+            await _EmployeeRepository.SaveAsync();
+           
+        }
     }
 }

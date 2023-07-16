@@ -5,6 +5,7 @@ using HrManagment.BLL.Services.EmployeeServices;
 using HrManagment.DAL.Models;
 using HrManagmentSystem.Controllers.EmployeesPersonalData.DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HrManagmentSystem.Controllers.Employeee
@@ -167,5 +168,25 @@ namespace HrManagmentSystem.Controllers.Employeee
             await _employeeService.DeleteAsync(id);
             return Ok(id);
         }
+
+
+        [HttpGet("{departmentId}/getByDepartment")]
+        public async Task<IActionResult> GetEmployeeByDepartment(int departmentId)
+        {
+            var emps = await _employeeService.GetEmployeeByDepartment(departmentId);
+            if(emps.Count() > 0)
+            {
+                return Ok(new { Message = "Yes" });
+            }
+            return Ok(new { Message = "No" });
+        }
+
+        [HttpPut("{olddeptId:int}/{newdeptId:int}")]
+        public async Task<IActionResult> UpdateEmployeeByDepartment(int oldDeptId, int newDeptID)
+        {
+            await _employeeService.updateEmployeeByDepartment(oldDeptId, newDeptID);
+            return Ok(new { Message = "Done" });
+        }
+
     }
 }

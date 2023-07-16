@@ -39,10 +39,7 @@ namespace HrManagment.BLL.Services.DepartmentServices
             return department.Name; 
         }
 
-        public Task DeleteAsync(int departmentId)
-        {
-            throw new NotImplementedException();
-        }
+    
         public async Task<Department> GetByIdAsync(int departmentId)
         {
             return await _Departmentrepository.GetByIdAsync(departmentId);

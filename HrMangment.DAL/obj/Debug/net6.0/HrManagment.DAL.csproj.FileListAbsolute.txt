@@ -12,3 +12,17 @@ C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\refint\H
 C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.pdb
 C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.genruntimeconfig.cache
 C:\Users\abdel\Desktop\HrMangmentSystem\HrMangment.DAL\obj\Debug\net6.0\ref\HrManagment.DAL.dll
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.deps.json
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.runtimeconfig.json
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.dll
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\bin\Debug\net6.0\HrManagment.DAL.pdb
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.csproj.AssemblyReference.cache
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.AssemblyInfoInputs.cache
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.AssemblyInfo.cs
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.csproj.CoreCompileInputs.cache
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.dll
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\refint\HrManagment.DAL.dll
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.pdb
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\HrManagment.DAL.genruntimeconfig.cache
+C:\Users\dinaa\Downloads\GP_ITI\HrManagmentSystem\HrManagmentSystem\HrMangment.DAL\obj\Debug\net6.0\ref\HrManagment.DAL.dll
