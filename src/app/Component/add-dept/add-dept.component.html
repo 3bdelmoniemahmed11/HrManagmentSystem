@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
   <div class="row">
       <div class="col-md-12 grid-margin stretch-card">
@@ -24,10 +25,54 @@
                       </div>
 
                   </form>
+=======
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title">New Department</p>
+        <div class="row mb-4">
+          <div class="col-lg-5 col-md-12 p-3 m-auto">
+            <form
+              class="form-sample"
+              [formGroup]="departmentForm"
+              (submit)="formHandler($event)"
+            >
+              <label for="GroupName">Department Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Name"
+                class="form-control rounded border-primary"
+                placeholder="Department name"
+              />
+              <ng-container *ngIf="getDepartmentName.touched">
+                <div
+                  *ngIf="getDepartmentName.hasError('required')"
+                  id="emailHelp"
+                  class="form-text text-danger"
+                >
+                  Department name Is Required
+                </div>
+                <div
+                  *ngIf="getDepartmentName.hasError('minlength')"
+                  id="emailHelp"
+                  class="form-text text-danger"
+                >
+                  Department name Length must be greater thant 3 charcters
+                </div>
+              </ng-container>
+              <div class="col-md-12 mx-2 d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-primary mr-2">Save</button>
+                <a [routerLink]="['/showDepts']"
+                  ><button class="btn btn-light">Back</button></a
+                >
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
               </div>
+            </form>
           </div>
+        </div>
       </div>
-
-
+    </div>
   </div>
-
+</div>

@@ -1,14 +1,21 @@
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { GroupService } from 'src/app/Services/Group/Group.service';
 import { AuthenticationService } from 'src/app/Services/Identity/authentication.service';
 
+=======
+import { Component ,OnInit} from '@angular/core';
+import { EmployeeService } from 'src/app/Services/Employee/employee.service';
+import Swal from 'sweetalert2';
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 @Component({
   selector: 'app-allemployees',
   templateUrl: './allemployees.component.html',
   styleUrls: []
 })
+<<<<<<< HEAD
 export class AllemployeesComponent {
   isLoginRoute = false;
   groupId:number;
@@ -83,5 +90,61 @@ export class AllemployeesComponent {
     return false;
 
   }
+=======
+export class AllemployeesComponent implements OnInit{
+  Employees:any;
+  constructor(private employeeServices:EmployeeService){}
+  ngOnInit(): void {
+   this.employeeServices.getAllEmployees().subscribe({
+    next :(response)=>{this.Employees=response; console.log(response)},
+    error:(error)=>{console.log(error)}
+   })
+  }
+
+  Delete( id : number) : void
+  {
+    Swal.fire({
+      title: 'Are you sure you want to delete this Employee?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this. employeeServices.deleteEmployee(id).subscribe({
+          next : () =>
+          {
+            this.removeDeletedExam(id);
+          },
+          error : (err)=>{ console.log(err)}
+        });
+        Swal.fire(
+          'Deleted!',
+          'Employee  has been deleted.',
+          'success'
+        )
+      }
+    })
+
+
+  }
+
+  removeDeletedExam(id: number): void {
+    this.Employees = this.Employees.filter((emp: any) => emp.id !== id);
+  }
+
+  searchTerm: string = '';
+  filtEmployees :any[];
+
+  get filteredEmployees(): any[] {
+   this.filtEmployees= this.Employees.filter((employee:any) =>
+      employee.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    console.log(this.filtEmployees);
+    return this.filtEmployees;
+  }
+
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 
 }

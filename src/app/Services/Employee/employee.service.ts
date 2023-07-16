@@ -5,7 +5,11 @@ import { environment } from 'environment/environment';
 @Injectable({
   providedIn: 'root',
 })
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 export class EmployeeService {
   baseURL: string =
     `${environment.apiUrl}/Employee`;
@@ -26,10 +30,13 @@ export class EmployeeService {
   editEmployee(employee: any) {
     return this.http.put(this.baseURL, employee);
   }
+<<<<<<< HEAD
   getEmpBydept(depId: any) {
     return this.http.get(`${this.baseURL}/${depId}/getByDepartment`);
   }
   updateEmployeedept(oldDepId: any,newDepId:any) {
     return this.http.put(`${this.baseURL}/${oldDepId}/${newDepId}`,oldDepId,newDepId);
   }
+=======
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 }

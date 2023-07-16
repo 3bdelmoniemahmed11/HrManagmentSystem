@@ -5,25 +5,28 @@
         <div class="row">
           <h4 class="col-12 card-title">Employee Information</h4>
           <div class="col-lg-5 co-md-12 m-2">
-            <img src="assets/Images/download.png" class="card-img-absolute" alt="employee">
             <div class="forms-sample mt-3">
               <h2>Employee Data</h2>
               <div class="form-group">
                 <label for="EmployeeHireD">Hiring Date</label>
-                <input type="date" class="form-control" value="2022-01-01" id="EmployeeHireD" disabled>
+                <input type="text" class="form-control" value="{{Employee.hirDate}}" id="EmployeeHireD" disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeSalary">Salary</label>
-                <input type="number" class="form-control" id="EmployeeSalary" value="10000" disabled>
+                <input type="number" class="form-control" id="EmployeeSalary" value="{{Employee.netSalary}}" disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeAttendanceDate">Attendance Date</label>
-                <input type="datetime" class="form-control" value="2022-01-01T09:30" id="EmployeeAttendanceDate"
+                <input type="datetime" class="form-control" value="{{Employee.attendanceTime}}" id="EmployeeAttendanceDate"
                   disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeLeavingDate">Leaving Date</label>
-                <input type="datetime" value="2022-01-01T09:30" class="form-control" id="EmployeeLeavingDate" disabled>
+                <input type="datetime" value="{{Employee.departureTime}}" class="form-control" id="EmployeeLeavingDate" disabled>
+              </div>
+              <div class="form-group">
+                <label for="EmployeeDepartment">Department</label>
+                <input type="datetime" value="{{Employee.department}}" class="form-control" id="EmployeeDepartment" disabled>
               </div>
 
             </div>
@@ -35,43 +38,36 @@
               <h2>Personal Information</h2>
               <div class="form-group">
                 <label for="EmployeeName">Name</label>
-                <input type="text" class="form-control" id="EmployeeName" value="Ahmed" disabled>
+                <input type="text" class="form-control" id="EmployeeName" value="{{Employee.name}}" disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeGender">Gender</label>
-                <select class="form-control form-select-lg mb-3 " id="EmployeeGender" disabled>
-                  <option selected>Male</option>
-                  <option>Female</option>
-                </select>
+                <input type="text" class="form-control" id="Employeegender" value="{{Employee.gender}}" disabled>
 
               </div>
               <div class="form-group">
-                <label for="EmployeeEmail">Email address</label>
-                <input type="email" class="form-control" id="EmployeeEmail" value="Ahmed@gmail.com" disabled>
-              </div>
-              <div class="form-group">
                 <label for="EmployeePhone">Phone Number</label>
-                <input type="tel" class="form-control" id="EmployeePhone" value="+2011902344" disabled>
+                <input type="tel" class="form-control" id="EmployeePhone" value="{{Employee.phone}}" disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeNationality">Nationality</label>
-                <input type="text" class="form-control" id="EmployeeNationality" value="Egyptian" disabled>
+                <input type="text" class="form-control" id="EmployeeNationality" value="{{Employee.nationality}}" disabled>
               </div>
               <div class="form-group">
                 <label for="exampleInputCity1">Birthday</label>
-                <input type="date" class="form-control" id="EmployeeBrithday" value="2022-01-01" disabled>
+                <input type="text" class="form-control" id="EmployeeBrithday" value="{{Employee.birthDate}}" disabled>
               </div>
               <div class="form-group">
                 <label for="EmployeeID">National ID</label>
-                <input type="text" class="form-control" id="EmployeeID" value="29988886665444" disabled>
+                <input type="text" class="form-control" id="EmployeeID" value="{{Employee.ssn}}" disabled>
               </div>
 
             </div>
           </div>
 
           <div class="col-md-12 mx-2 mt-3">
-            <button onclick="EnableAll()" id="Edit_Save" class="btn btn-primary mr-2">Edit</button>
-            <a href=""><button class="btn btn-light">Back</button></a>
+            <a [routerLink]="['/newemployee', EmployeeID,'edit']" > <button  id="Edit_Save" class="btn btn-primary mr-2">Edit</button></a>
+            <a [routerLink]="['/allEmp']"><button class="btn btn-light">Back</button></a>
           </div>
 
         </div>

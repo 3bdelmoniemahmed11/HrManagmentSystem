@@ -1,0 +1,56 @@
+<div class="content-wrapper ">
+    <!--info top-->
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Add Employee Attendance</h4>
+            <form class="forms-sample" [formGroup]="AttendanceForm">
+
+                
+                <div class="form-group">
+                    <label for="employeeName" class="form-label">Employee Name</label>
+                <select name="employeeName"  class=" form-control col-lg-12" id="employeeName" formControlName="EmployeeId" >
+                    <option *ngFor="let c of allEmployee let i=index" value="{{c.id}}" 
+                    [selected]="attId ==0 ?c.id:c.id==attendanceById.empId">{{c.name}}</option>
+                </select>
+                <ng-container *ngIf="getEmployeeId.touched">
+                  <div id="employeeName" class="text-danger mt-2" *ngIf="getEmployeeId.hasError('required')"> Please select employee </div>
+                </ng-container>
+                </div>
+
+              <div class="form-group">
+                <label for="atttendanceTime">Attendance time</label>
+                <input type="time" class="form-control" id="atttendanceTime" formControlName="AtttendanceTime" >
+                <ng-container *ngIf="getAtttendanceTime.touched">
+                  <div id="atttendanceTime" class="text-danger mt-2" *ngIf="getAtttendanceTime.hasError('required')"> Please Enter Attendance Time </div>
+                </ng-container>
+              </div>
+              <div class="form-group">
+                <label for="departureTime">Departure Time</label>
+                <input type="time" class="form-control" id="departureTime"  formControlName="DepartureTime" >
+                <ng-container *ngIf="getDepartureTime.touched">
+                  <div id="departureTime" class="text-danger mt-2" *ngIf="getDepartureTime.hasError('required')">  Please Enter Departure Time  </div>
+                  <div *ngIf="AttendanceForm.hasError('timeRange')" class="text-danger mt-2">Departure time must be greater than attendance time</div>
+                </ng-container>
+              </div>
+
+              <div class="form-group">
+                <label for="attendanceDate">Date</label>
+                <input type="date" class="form-control" id="attendanceDate" formControlName="AttendanceDate">
+                <ng-container *ngIf="getAttendanceDate.touched">
+                  <div id="attendanceDate" class="text-danger mt-2" *ngIf="getAttendanceDate.hasError('required')"> Please Enter Date </div>
+
+                </ng-container>
+              </div>
+          
+              <button type="submit" class="btn btn-primary mr-2" (click)="Add()" >{{ attId == 0 ? "Add Atttendence" : "Save Changes"}}</button>
+        <button class="btn btn-light"><a  style=" text-decoration: none;" [routerLink]="['/attendance']">{{ attId == 0 ? "Back" : "Cancel"}}</a></button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>

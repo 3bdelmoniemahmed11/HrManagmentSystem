@@ -24,10 +24,15 @@ import { PrintFormComponent } from './Component/print-form/print-form.component'
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
 
+=======
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-edit-attendance.component';
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 @NgModule({
-  declarations:[
+  declarations: [
     AppComponent,
     NavbarComponent,
     ProfileComponent,
@@ -47,16 +52,21 @@ import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
     PrintFormComponent,
     LoginComponent,
     PermissionComponent,
+<<<<<<< HEAD
     MoveDeptComponent
+=======
+    AddEditAttendanceComponent
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

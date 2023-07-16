@@ -17,12 +17,17 @@ import { ShowusersComponent } from './Component/showusers/showusers.component';
 import { PrintFormComponent } from './Component/print-form/print-form.component';
 import { LoginComponent } from './Component/login/login.component';
 import { PermissionComponent } from './Component/permission/permission.component';
+<<<<<<< HEAD
 import { AuthGuard } from './guards/auth.guard';
 import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
+=======
+import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-edit-attendance.component';
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+<<<<<<< HEAD
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
   { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
   { path: 'newemployee', component: NewemployeeComponent,canActivate: [AuthGuard] },
@@ -39,6 +44,28 @@ const routes: Routes = [
   { path: 'Print', component: PrintFormComponent,canActivate: [AuthGuard] },
   { path: 'permission', component: PermissionComponent,canActivate: [AuthGuard] },
   { path: 'mDept/:id',component:MoveDeptComponent,canActivate:[AuthGuard]}
+=======
+  { path: 'home', component: HomeComponent },
+
+  { path: 'addDepartment/:id/edit', component: AddDeptComponent },
+  { path: 'addGroup', component: AddGroupComponent },
+  { path: 'salaryrepot', component: SalryreportComponent },
+  { path: 'adduser', component: AdduserComponent },
+  { path: 'empHoliday', component: EmpholidayesComponent },
+  { path: 'officialvac', component: OfficialvacComponent },
+  { path: 'attendance', component: AttendanceComponent },
+
+  { path: 'showDepts', component: ShowdepartsComponent },
+  { path: 'showUsers', component: ShowusersComponent },
+  { path: 'Print', component: PrintFormComponent },
+  { path: 'permission', component: PermissionComponent },
+  //alla
+  { path: 'allEmp', component: AllemployeesComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'allEmp/:id', component: ProfileComponent },
+  { path: 'newemployee/:id/edit', component: NewemployeeComponent },
+  { path: 'add/:id', component: AddEditAttendanceComponent },
+>>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 ];
 
 @NgModule({
