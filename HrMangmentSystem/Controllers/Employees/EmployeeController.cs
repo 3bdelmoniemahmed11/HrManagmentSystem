@@ -30,8 +30,6 @@ namespace HrManagmentSystem.Controllers.Employeee
             _departmentService = departmentService;
         }
 
-
-
         //[HttpGet()]
         //public async Task<IActionResult> getAllAttendances()
         //{
