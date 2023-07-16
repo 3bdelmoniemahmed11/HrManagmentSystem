@@ -81,6 +81,7 @@ export class NewemployeeComponent implements OnInit {
           attendanceTime: '',
           departureTime: '',
           department: '',
+          departmentname: '',
           netsalary: 0,
           isDeleted: false,
         };
@@ -172,11 +173,13 @@ export class NewemployeeComponent implements OnInit {
         this.postEmp.ssn = this.getssn.value;
         this.postEmp.phone = this.getphone.value;
         this.postEmp.netSalary = this.getNetSalary.value;
+
         console.log(this.postEmp);
         this.employeeServices.addEmployee(this.postEmp).subscribe({
           next: () => {
-            console.log('add ok');
           this.ConfirmAddEmployee();
+          this.router.navigate(['/allEmp']);
+
           },
         });
       } else {

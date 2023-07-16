@@ -19,10 +19,10 @@ export class AllemployeesComponent implements OnInit{
     private auth:AuthenticationService,
     private groupservice:GroupService){}
   ngOnInit(): void {
-   this.employeeServices.getAllEmployees().subscribe({
-    next :(response)=>{this.Employees=response; console.log(response)},
-    error:(error)=>{console.log(error)}
-   })
+    this.employeeServices.getAllEmployees().subscribe({
+      next :(response)=>{this.Employees=response; console.log(response)},
+      error:(error)=>{console.log(error)}
+     })
    this.auth.decodedToken();
     this.groupId = this.auth.getGroupIdFromToken();
 
@@ -128,6 +128,5 @@ export class AllemployeesComponent implements OnInit{
     console.log(this.filtEmployees);
     return this.filtEmployees;
   }
-
 
 }
