@@ -24,28 +24,28 @@ namespace HrManagment.DAL.Models
 
         [RegularExpression("^[0-9]{11,}$", ErrorMessage = "Please enter a valid Phone number.")]
         [MinLength(11)]
-        public string Phone { get; set; }   
+        public string Phone { get; set; }
         public string Gender { get; set; }
         //check the age is greater than 20 by two ways 1:custom validation  
         [Age(20)]
-        public DateTime BirthDate { get; set; } 
+        public DateTime BirthDate { get; set; }
         public string Nationality { get; set; }
         [RegularExpression("^[0-9]+$", ErrorMessage = "Please enter a valid Salary")]
         [Range(0, int.MaxValue, ErrorMessage = "The value must be a positive number.")]
-        public int NetSalary { get; set; }  
+        public int NetSalary { get; set; }
         public TimeSpan AttendanceTime { get; set; }
         [TimeSpanComparison("AttendanceTime")]
         public TimeSpan DepartureTime { get; set; }
-        public bool ?IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
 
         [ForeignKey("Department")]
-        public int DeptId { get; set; } 
+        public int DeptId { get; set; }
         public Department Department { get; set; }
 
-        public virtual List<Attendance> Attendances { get; set; } = new List<Attendance>();
+        public virtual List<Attendance>? Attendances { get; set; } = new List<Attendance>();
 
-        public virtual List<EmployeeContractDate> ContractsDates { get; set; } = new List<EmployeeContractDate>();
+        public virtual List<EmployeeContractDate>? ContractsDates { get; set; } = new List<EmployeeContractDate>();
 
-        public virtual List<OldSalary>   OldSalarys { get; set;} = new List<OldSalary>();    
+        public virtual List<OldSalary>? OldSalarys { get; set; } = new List<OldSalary>();
     }
 }

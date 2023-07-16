@@ -20,10 +20,11 @@ namespace HrManagment.BLL.Services.EmployeeServices
         {
             return await _EmployeeRepository.GetFilteredAsync(e => e.IsDeleted == false);
         }
-       
+
         public async Task<Employee> GetByIdAsync(int EmployeeId)
         {
-           return await _EmployeeRepository.GetByIdAsync(EmployeeId);
+
+            return await _EmployeeRepository.GetByIdAsync(EmployeeId);
         }
 
         public async Task<IEnumerable<Employee>> GetAllEmpsIncludingDeptAsync()
@@ -57,12 +58,12 @@ namespace HrManagment.BLL.Services.EmployeeServices
             return res;
         }
 
-        public async Task<int> GetEmployeeByPhone(string empPhone)
+        public async Task<int> GetEmployeeBySSN(string ssn)
         {
-            var res = await _EmployeeRepository.GetFilteredAsync(emp => emp.Phone == empPhone);
+            var res = await _EmployeeRepository.GetFilteredAsync(emp => emp.SSN == ssn);
 
 
-            return  res.FirstOrDefault().Id;
+            return res.FirstOrDefault().Id;
         }
 
         public async Task<IEnumerable<Employee>> GetEmployeeByDepartment(int department_id)
@@ -80,7 +81,7 @@ namespace HrManagment.BLL.Services.EmployeeServices
                 _EmployeeRepository.Update(item);
             }
             await _EmployeeRepository.SaveAsync();
-           
+
         }
     }
 }

@@ -30,52 +30,55 @@ namespace HrManagmentSystem.Controllers.Employeee
             _departmentService = departmentService;
         }
 
-      
 
-        [HttpGet()]
-        public async Task<IActionResult> getAllAttendances()
-        {
-            var res = await _employeeService.GetAllAsync();
-            return Ok(res);
-        }
-        ////alla
-        //[HttpGet]
-        //public async Task<IActionResult> getAllEmployees()
+
+        //[HttpGet()]
+        //public async Task<IActionResult> getAllAttendances()
         //{
-        //    var Employees = await _employeeService.GetEmployee_Deparmtnet();
-        //    List<EmployeesDataDTO> EmployeesData = new List<EmployeesDataDTO>();
-
-        //    foreach (var employee in Employees)
-        //    {
-        //        EmployeesDataDTO employeesDataDTO = new EmployeesDataDTO();
-        //        employeesDataDTO.Id = employee.Id;
-        //        employeesDataDTO.Name = employee.Name;
-        //        employeesDataDTO.Nationality = employee.Nationality;
-        //        employeesDataDTO.Gender = employee.Gender;
-        //        employeesDataDTO.Address = employee.Address;
-        //        employeesDataDTO.Phone = employee.Phone;
-        //        employeesDataDTO.NetSalary = employee.NetSalary;
-        //        employeesDataDTO.BirthDate = employee.BirthDate.ToString();
-        //        employeesDataDTO.SSN = employee.SSN;
-        //        employeesDataDTO.AttendanceTime = employee.AttendanceTime.ToString();
-        //        employeesDataDTO.DepartureTime = employee.DepartureTime.ToString();
-        //        employeesDataDTO.DeptId = employee.DeptId;
-        //        employeesDataDTO.Department = employee.Department.Name;
-        //        employeesDataDTO.IsDeleted = employee.IsDeleted;
-
-        //        EmployeesData.Add(employeesDataDTO);
-
-
-
-
-        //    }
-        //    return Ok(EmployeesData);
+        //    var res = await _employeeService.GetAllAsync();
+        //    return Ok(res);
         //}
+        ////alla
+        [HttpGet]
+        public async Task<IActionResult> getAllEmployees()
+        {
+            var Employees = await _employeeService.GetAllEmpsIncludingDeptAsync();
+
+            List<EmployeesDataDTO> EmployeesData = new List<EmployeesDataDTO>();
+
+            foreach (var employee in Employees)
+            {
+                EmployeesDataDTO employeesDataDTO = new EmployeesDataDTO();
+                employeesDataDTO.Id = employee.Id;
+                employeesDataDTO.Name = employee.Name;
+                employeesDataDTO.Nationality = employee.Nationality;
+                employeesDataDTO.Gender = employee.Gender;
+                employeesDataDTO.Address = employee.Address;
+                employeesDataDTO.Phone = employee.Phone;
+                employeesDataDTO.NetSalary = employee.NetSalary;
+                employeesDataDTO.BirthDate = employee.BirthDate.ToString();
+                employeesDataDTO.SSN = employee.SSN;
+                employeesDataDTO.AttendanceTime = employee.AttendanceTime.ToString();
+                employeesDataDTO.DepartureTime = employee.DepartureTime.ToString();
+                employeesDataDTO.DeptId = employee.DeptId;
+                employeesDataDTO.Department = employee.Department.Name;
+                employeesDataDTO.IsDeleted = employee.IsDeleted;
+                var hirdaterecord = await _contractDataService.GetByIdAsync(employee.Id);
+                employeesDataDTO.HirDate = hirdaterecord.HireDate.ToString();
+
+                EmployeesData.Add(employeesDataDTO);
+
+
+
+
+            }
+            return Ok(EmployeesData);
+        }
         [HttpGet("{empId}")]
-        public async Task<IActionResult> getEmployeeById(int empId)
+        public async Task<IActionResult> GetEmpbyidAsync(int empId)
         {
             var employee = await _employeeService.GetByIdAsync(empId);
-           
+
             var hirdate = await _contractDataService.GetByIdAsync(empId);
 
             EmployeesDataDTO employeesDataDTO = new EmployeesDataDTO();
@@ -91,11 +94,10 @@ namespace HrManagmentSystem.Controllers.Employeee
             employeesDataDTO.AttendanceTime = employee.AttendanceTime.ToString();
             employeesDataDTO.DepartureTime = employee.DepartureTime.ToString();
             employeesDataDTO.DeptId = employee.DeptId;
-            employeesDataDTO.Department = employee.Department?.Name;
             employeesDataDTO.IsDeleted = employee.IsDeleted;
             //edit it 
             var hirdaterecord = await _contractDataService.GetByIdAsync(employee.Id);
-            employeesDataDTO.HirDate = hirdaterecord.HireDate.ToString();
+            employeesDataDTO.HirDate = hirdate.HireDate.ToString();
             return Ok(employeesDataDTO);
         }
         [HttpPost]
@@ -114,7 +116,7 @@ namespace HrManagmentSystem.Controllers.Employeee
             sendemployee.SSN = employee.SSN;
             sendemployee.Nationality = employee.Nationality;
             sendemployee.IsDeleted = false;
-           
+
             sendemployee.DeptId = int.Parse(employee.Department);
 
             if (!ModelState.IsValid)
@@ -122,11 +124,15 @@ namespace HrManagmentSystem.Controllers.Employeee
                 return BadRequest(ModelState);
             }
             await _employeeService.InsertAsync(sendemployee);
+
+
             hirdate.HireDate = DateTime.Parse(employee.HirDate);
-            hirdate.EmpId =await _employeeService.GetEmployeeByPhone(employee.Phone);
-           
-           await _contractDataService.InsertAsync(hirdate);
+            hirdate.EmpId = await _employeeService.GetEmployeeBySSN(employee.SSN);
+
+            await _contractDataService.InsertAsync(hirdate);
             return Ok(employee);
+
+
         }
         [HttpPut]
         public async Task<IActionResult> EditEmployee([FromBody] EmployeesDataDTO employee)
@@ -168,7 +174,6 @@ namespace HrManagmentSystem.Controllers.Employeee
             await _employeeService.DeleteAsync(id);
             return Ok(id);
         }
-
 
         [HttpGet("{departmentId}/getByDepartment")]
         public async Task<IActionResult> GetEmployeeByDepartment(int departmentId)
