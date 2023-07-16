@@ -1,0 +1,132 @@
+<div class="container-scroller">
+  <!--Nav-->
+  <app-navbar></app-navbar>
+  <!--end nav-->
+  <div class="container-fluid page-body-wrapper">
+
+      <!-- settings -->
+      <div class="theme-setting-wrapper" style="cursor: pointer;">
+        <!--icon setting-->
+        <div id="settings-trigger"><i class="fa-solid fa-gear fa-spin fa-spin-reverse" style="color: #ffffff;"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="fa-solid fa-xmark settings-close "></i>
+          <p class="settings-heading">SIDEBAR COLOR</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+            <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+          </div>
+          <p class="settings-heading mt-2">HEADER COLOR</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <!--End settings-->
+      <!--Start right sidebar-->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <ng-container *ngIf="isAccess('Dashboard')">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/home']">
+              <i class="fa-solid fa-house fa-lg fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="isAccess('Departments')">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/showDepts']">
+              <i class="icon-grid fa-solid fa-user-group fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Departments</span>
+            </a>
+          </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Employees')">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+              aria-controls="form-elements">
+              <i class="fa-solid fa-users-between-lines fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Employees <i class="ml-3 fa-solid fa-chevron-down"></i> </span>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/allEmp']">All Employees</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/attendance']">Attendance</a></li>
+              </ul>
+            </div>
+          </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Permissions')">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#groups" aria-expanded="false">
+              <i class="icon-grid fa-solid fa-sliders fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Permissions <i class="ml-3 fa-solid fa-chevron-down"></i></span>
+              </a>
+            <div class="collapse" id="groups">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['/permission']">&nbsp;Group</a></li>
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['/addGroup']">&nbsp;Add Group</a></li>
+              </ul>
+            </div>
+          </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Dashboard')">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#users">
+              <i class="icon-grid fa-solid fa-users fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Users &nbsp;<i class="ml-5 fa-solid fa-chevron-down"></i></span>
+            </a>
+            <div class="collapse" id="users">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['/showUsers']">&nbsp;Users</a></li>
+                </ul>
+
+            </div>
+          </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('Settings')">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#settings">
+              <i class="icon-grid fa-solid fa-gears fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title"> Settings &nbsp;&nbsp; <i class="ml-4 fa-solid fa-chevron-down"></i></span>
+            </a>
+            <div class="collapse" id="settings">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['/empHoliday']"> General information </a></li>
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['/officialvac']"> Official vacations </a></li>
+              </ul>
+            </div>
+          </li>
+          </ng-container>
+          <ng-container *ngIf="isAccess('SalaryReport')">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/salaryrepot']" >
+              <i class="icon-grid fa-solid fa-square-poll-horizontal fa-lg mr-4" style="color: #5858FA;"></i>
+              <span class="menu-title">Salary Report</span>
+            </a>
+
+          </li>
+          </ng-container>
+
+        </ul>
+      </nav>
+      <!--End Right Sidebar-->
+
+       <!--Main Container-->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+            <router-outlet></router-outlet>
+
+          </div>
+        </div>
+    </div>
+
+</div>

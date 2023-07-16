@@ -15,8 +15,10 @@
               </div>
 
               <div class="col-lg-2 col-md-12 ml-5 pl-5">
+                <ng-container *ngIf="IsADD()">
                 <a [routerLink]="['/adduser']"><button class="btn btn-primary mb-3 m-2"><i
                       class="fa-solid fa-plus"></i></button></a>
+                </ng-container>
               </div>
             </div>
 
@@ -38,7 +40,7 @@
                   <td> {{ user.groupId==1 ? 'Admin' : 'User' }}</td>
                   <td> {{user.userName}} </td>
                   <td>{{user.email}}</td>
-                  <td>{{ user.groupId}}</td>
+                  <td>{{ user.group.name}}</td>
                 </tr>
 
               </tbody>

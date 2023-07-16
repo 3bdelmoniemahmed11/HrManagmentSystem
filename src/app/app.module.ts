@@ -28,6 +28,7 @@ import { MoveDeptComponent } from './Component/move-dept/move-dept.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-edit-attendance.component';
+import { SidebarComponent } from './Component/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { AddEditAttendanceComponent } from './Component/add-edit-attendance/add-
     LoginComponent,
     PermissionComponent,
     MoveDeptComponent,
-    AddEditAttendanceComponent
+    AddEditAttendanceComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

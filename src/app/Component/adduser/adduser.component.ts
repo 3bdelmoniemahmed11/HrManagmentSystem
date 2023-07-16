@@ -12,13 +12,11 @@ import Swal from 'sweetalert2';
 export class AdduserComponent {
   RegisterForm = new FormGroup({
     email: new FormControl('', Validators.required),
-    //fullName: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     groupid:new FormControl(),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      //Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/),
+      Validators.minLength(6)
     ]),
 
   });
@@ -55,6 +53,7 @@ export class AdduserComponent {
           });
         },
         error: (error) => {
+         console.log(error);
 
           Swal.fire({
             icon: 'error',

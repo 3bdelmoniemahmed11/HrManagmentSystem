@@ -19,24 +19,18 @@ export class LoginComponent {
     private AuthenticationService: AuthenticationService
   ) {
     if (this.AuthenticationService.isLoggedIn()) {
-      //this.router.navigate(['/']);
+
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /*login_func() {
-    this.router.navigateByUrl('/home');
-  }*/
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.AuthenticationService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          console.log(response);
+        next: async (response) => {
           this.AuthenticationService.storeToken(response.token);
-          //console.log(this.AuthenticationService.decodedToken());
-         // document.location.reload();
           this.router.navigateByUrl('/home');
+
         },
         error: (error) => {
           Swal.fire({
