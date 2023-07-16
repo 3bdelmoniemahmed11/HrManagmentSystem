@@ -195,7 +195,7 @@ export class NewemployeeComponent implements OnInit {
     }
 
     console.log(this.employeeForm.value);
-    console.log(this.employeeForm.status);
+    console.log(this.employeeForm);
   }
 
   Delete(id: number): void {

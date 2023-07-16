@@ -25,8 +25,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
-  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
-  { path: 'newemployee', component: NewemployeeComponent,canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: ProfileComponent,canActivate: [AuthGuard] },
   { path: 'addDepartment/:id', component: AddDeptComponent,canActivate: [AuthGuard] },
   { path: 'addGroup', component: AddGroupComponent,canActivate: [AuthGuard] },
   { path: 'salaryrepot', component: SalryreportComponent,canActivate: [AuthGuard] },
@@ -39,7 +38,11 @@ const routes: Routes = [
   { path: 'showUsers', component: ShowusersComponent,canActivate: [AuthGuard] },
   { path: 'Print', component: PrintFormComponent,canActivate: [AuthGuard] },
   { path: 'permission', component: PermissionComponent,canActivate: [AuthGuard] },
-  { path: 'mDept/:id',component:MoveDeptComponent,canActivate:[AuthGuard]}
+  { path: 'mDept/:id',component:MoveDeptComponent,canActivate:[AuthGuard]},
+  ///////
+  { path: 'allEmp/:id', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'newemployee/:id/edit', component: NewemployeeComponent,canActivate: [AuthGuard] },
+  { path: 'add/:id', component: AddEditAttendanceComponent,canActivate: [AuthGuard] },
 ];
 
 @NgModule({
