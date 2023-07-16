@@ -3,10 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthenticationService } from './Services/Identity/authentication.service';
 import { GroupService } from './Services/Group/Group.service';
-import { EmployeeService } from './Services/Employee/employee.service';
-import { DepartmentService } from './Services/Department/department.service';
-import { GeneralSettingSService } from './Services/GeneralSetting/GeneralSettings.service';
-import { UserService } from './Services/Identity/User.service';
 
 @Component({
   selector: 'app-root',

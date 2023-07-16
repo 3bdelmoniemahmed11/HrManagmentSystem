@@ -43,10 +43,7 @@ export class EmpholidayesComponent implements OnInit {
       next: (result) => {
         this.Setting = result;
         this.Setting = this.Setting;
-<<<<<<< HEAD
-=======
         console.log(this.Setting);
->>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 
         if (this.Setting != null) {
           this.settingForm.controls['Extra'].setValue(this.Setting.addationValue);
@@ -113,7 +110,6 @@ export class EmpholidayesComponent implements OnInit {
       });
     }
 
-<<<<<<< HEAD
    this.WeeklyFunction();
    this.UpdateWDays();
    this.AddWDays();
@@ -146,17 +142,6 @@ export class EmpholidayesComponent implements OnInit {
     //window.location.reload();
   }
 
-=======
-    if (this.old != null || this.new != null) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Data Updated',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-    window.location.reload();
->>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
   }
 
   WeeklyFunction(){

@@ -1,36 +1,29 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from 'src/app/Services/Employee/employee.service';
 import { GroupService } from 'src/app/Services/Group/Group.service';
 import { AuthenticationService } from 'src/app/Services/Identity/authentication.service';
-
-=======
-import { Component ,OnInit} from '@angular/core';
-import { EmployeeService } from 'src/app/Services/Employee/employee.service';
 import Swal from 'sweetalert2';
->>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
+
 @Component({
   selector: 'app-allemployees',
   templateUrl: './allemployees.component.html',
   styleUrls: []
 })
-<<<<<<< HEAD
-export class AllemployeesComponent {
+export class AllemployeesComponent implements OnInit{
+  Employees:any;
   isLoginRoute = false;
   groupId:number;
   permisions:any[]=[];
   results:any;
-  constructor(
-    private router: Router,private auth:AuthenticationService,
-    private groupservice:GroupService) {
-
-  }
-
-
-  ngOnInit(): void
-  {
-    this.auth.decodedToken();
+  constructor(private employeeServices:EmployeeService,
+    private auth:AuthenticationService,
+    private groupservice:GroupService){}
+  ngOnInit(): void {
+   this.employeeServices.getAllEmployees().subscribe({
+    next :(response)=>{this.Employees=response; console.log(response)},
+    error:(error)=>{console.log(error)}
+   })
+   this.auth.decodedToken();
     this.groupId = this.auth.getGroupIdFromToken();
 
 
@@ -90,16 +83,7 @@ export class AllemployeesComponent {
     return false;
 
   }
-=======
-export class AllemployeesComponent implements OnInit{
-  Employees:any;
-  constructor(private employeeServices:EmployeeService){}
-  ngOnInit(): void {
-   this.employeeServices.getAllEmployees().subscribe({
-    next :(response)=>{this.Employees=response; console.log(response)},
-    error:(error)=>{console.log(error)}
-   })
-  }
+
 
   Delete( id : number) : void
   {
@@ -145,6 +129,5 @@ export class AllemployeesComponent implements OnInit{
     return this.filtEmployees;
   }
 
->>>>>>> ccaca1490def8f848790231eeb57bc5cc5b4b560
 
 }
