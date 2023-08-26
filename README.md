@@ -1,7 +1,7 @@
 <h2>Project title :</h2>
 <p>Hr Managment website</p>
 <h3>About the Project: 📚</h3>
-<p>Developed a movies website that shows the movies (trending - top rated ) on the home page and you can search for a specific movie and shows info about each movie (casts - type) and list similar</p>
+<p>Worked in a team to build an HR management system with features including user authentication, group-based access control, crud operations on employees, tracking attendance, importing employee attendance data from Excel, and generating and printing salary reports.</p>
 <h3>Live Link / Demo Link: 🔗</h3>
 <p>Not Deploed Yet/</p>
 
