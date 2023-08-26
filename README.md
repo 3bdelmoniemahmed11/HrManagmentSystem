@@ -33,7 +33,7 @@
 <h3>How to run :</h3>
 <ul>
 <li>Open the front-end project and  run this command  ng serve -o </li>
-<li>Open the Back-end project  and run it </li>
+<li>Open the Back-end project  and run this command in package console manager "update-database"</li>
 </ul>
 
 <h3>Status: 📶</h3>
